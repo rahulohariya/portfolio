@@ -1,0 +1,7 @@
+.image-slots.state.json
+.thumbnail
+
+# Local system/editor files
+.DS_Store
+Thumbs.db
+.vscode/

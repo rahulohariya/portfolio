@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; background: #0d0d0c; }
+    ::selection { background: #ff5a1f; color: #0d0d0c; }
+    a { text-decoration: none; }
+  </style>
+</helmet>
+<x-import component-from-global-scope="image-slot" from="./image-slot.js" hint-size="1,1"></x-import>
+
+<div style="background:#0d0d0c; color:#f5f2ea; font-family:'Plus Jakarta Sans',sans-serif; min-height:100vh;" data-screen-label="Projects">
+
+  <!-- NAV -->
+  <nav style="display:flex; align-items:center; justify-content:space-between; padding:28px 64px; position:sticky; top:0; z-index:50; background:rgba(13,13,12,0.85); backdrop-filter:blur(10px); border-bottom:1px solid rgba(245,242,234,0.08);">
+    <a href="Home.dc.html" style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:20px; color:#f5f2ea; letter-spacing:-0.02em;">Rahul O.</a>
+    <div style="display:flex; align-items:center; gap:40px;">
+      <a href="Home.dc.html" style="color:rgba(245,242,234,0.65); font-size:15px; font-weight:500;">Home</a>
+      <a href="Projects.dc.html" style="color:#f5f2ea; font-size:15px; font-weight:500;">Work</a>
+      <a href="About.dc.html" style="color:rgba(245,242,234,0.65); font-size:15px; font-weight:500;">About</a>
+      <a href="mailto:hi@rahulohariya.com" style="background:#ff5a1f; color:#0d0d0c; padding:10px 20px; border-radius:100px; font-size:14px; font-weight:700;">Get in touch</a>
+    </div>
+  </nav>
+
+  <!-- HEADER -->
+  <section style="max-width:1440px; margin:0 auto; padding:80px 64px 50px;">
+    <div style="color:#ff5a1f; font-weight:700; font-size:13px; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:16px;">Selected work</div>
+    <h1 style="font-family:'Space Grotesk',sans-serif; font-size:clamp(36px,5vw,64px); font-weight:700; letter-spacing:-0.03em; margin:0 0 20px; max-width:800px;">Some of the work I've shipped.</h1>
+    <p style="font-size:18px; line-height:1.6; color:rgba(245,242,234,0.65); max-width:560px; margin:0;">I design prototypes in Figma and build production sites in Webflow, Framer, and WordPress.</p>
+  </section>
+
+  <!-- PROJECT LIST -->
+  <section style="max-width:1440px; margin:0 auto; padding:0 64px 120px; display:flex; flex-direction:column; gap:100px;">
+    <sc-for list="{{ projects }}" as="p" hint-placeholder-count="6">
+      <article id="{{ p.id }}" style="display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px; align-items:center; scroll-margin-top:100px;">
+        <div style="order:{{ p.imgOrder }};">
+          <div style="border-radius:20px; overflow:hidden; border:1px solid rgba(245,242,234,0.1); background:#131311; aspect-ratio:4/3;">
+            <sc-if value="{{ p.hasImage }}" hint-placeholder-val="{{ true }}">
+              <img src="{{ p.img }}" alt="{{ p.name }}" style="width:100%; height:100%; object-fit:cover; object-position:top;">
+            </sc-if>
+            <sc-if value="{{ p.needsSlot }}" hint-placeholder-val="{{ false }}">
+              <image-slot id="{{ p.id }}-slot" style="width:100%; height:100%; display:block;" shape="rect" fit="cover" placeholder="Drop a screenshot of United Enterprises"></image-slot>
+            </sc-if>
+          </div>
+        </div>
+        <div style="order:{{ p.textOrder }};">
+          <div style="font-family:'Space Grotesk',sans-serif; font-size:13px; color:rgba(245,242,234,0.4); margin-bottom:14px;">{{ p.index }} / 06</div>
+          <h2 style="font-family:'Space Grotesk',sans-serif; font-size:clamp(26px,3vw,36px); font-weight:700; letter-spacing:-0.02em; margin:0 0 16px;">{{ p.name }}</h2>
+          <p style="font-size:16px; line-height:1.7; color:rgba(245,242,234,0.65); margin:0 0 24px;">{{ p.desc }}</p>
+          <div style="display:flex; flex-wrap:wrap; gap:10px;">
+            <sc-for list="{{ p.tools }}" as="tool" hint-placeholder-count="3">
+              <span style="font-size:13px; font-weight:600; padding:8px 16px; border-radius:100px; border:1px solid rgba(245,242,234,0.16); color:rgba(245,242,234,0.8);">{{ tool }}</span>
+            </sc-for>
+          </div>
+        </div>
+      </article>
+    </sc-for>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="max-width:1440px; margin:0 auto; padding:60px 64px 48px; border-top:1px solid rgba(245,242,234,0.08); display:flex; justify-content:space-between; flex-wrap:wrap; gap:32px;">
+    <div>
+      <div style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:20px; margin-bottom:10px;">Rahul O.</div>
+      <p style="font-size:14px; color:rgba(245,242,234,0.5); max-width:320px; line-height:1.6; margin:0;">Web developer &amp; UI/UX designer helping startups launch fast, high-performing websites.</p>
+    </div>
+    <div style="display:flex; gap:56px; flex-wrap:wrap;">
+      <div>
+        <div style="font-size:13px; color:rgba(245,242,234,0.4); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:14px;">Contact</div>
+        <a href="mailto:hi@rahulohariya.com" style="display:block; color:#f5f2ea; font-size:15px; margin-bottom:10px;">hi@rahulohariya.com</a>
+        <a href="https://www.linkedin.com/in/rahulohariya/" target="_blank" style="display:block; color:#f5f2ea; font-size:15px; margin-bottom:10px;">LinkedIn</a>
+        <a href="https://notion.rahulohariya.com" target="_blank" style="display:block; color:#f5f2ea; font-size:15px;">Notion</a>
+      </div>
+      <div>
+        <div style="font-size:13px; color:rgba(245,242,234,0.4); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:14px;">Site</div>
+        <a href="Home.dc.html" style="display:block; color:#f5f2ea; font-size:15px; margin-bottom:10px;">Home</a>
+        <a href="About.dc.html" style="display:block; color:#f5f2ea; font-size:15px;">About</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const raw = [
+      {
+        id: 'queens-quinoa', name: 'Queens Quinoa', img: 'images/queens-quinoa.jpg',
+        desc: "Developed and deployed the Queens Quinoa website on WordPress with a smooth, minimal layout that keeps the brand's story front and center. Crafted clean wireframes in Figma and translated them into a fast-loading, mobile-friendly experience — intuitive, consistent, and built to scale as the brand grows.",
+        tools: ['Figma', 'WordPress', 'CMS', 'ACF'],
+      },
+      {
+        id: 'united-enterprises', name: 'United Enterprises', needsSlot: true,
+        desc: 'Built on a custom WordPress theme optimized for speed and scalability, with clear service categorization, intuitive menus, and visual consistency — plus tuning for responsiveness, fast load times, and search visibility.',
+        tools: ['Figma', 'WordPress', 'CMS'],
+      },
+      {
+        id: 'crappy-presentations', name: 'Crappy Presentations', img: 'images/crappy-presentations.png',
+        desc: "Built in Webflow using a CMS-driven structure for easy template management, with micro-interactions and smooth animations matched to the brand's quirky identity — engaging, responsive, and performant.",
+        tools: ['Figma', 'Webflow'],
+      },
+      {
+        id: 'house-of-calisthenics', name: 'House of Calisthenics', img: 'images/house-of-calisthenics.png',
+        desc: 'Implemented in Webflow with custom JavaScript for interactive forms and dynamic elements. Subtle transitions create an energetic yet professional feel, tested across mobile, tablet, and desktop.',
+        tools: ['Figma', 'Webflow'],
+      },
+      {
+        id: 'avasa', name: 'Avasa', img: 'images/avasa.png',
+        desc: 'Built and deployed on Webflow with smooth animations and a modular structure for scalability. Minimalist wireframes and prototypes in Figma emphasized clean visuals and an elegant user journey.',
+        tools: ['Figma', 'Webflow'],
+      },
+      {
+        id: 'mega-mulchers', name: 'Mega Mulchers', img: 'images/mega-mulchers.png',
+        desc: 'Rebuilt and deployed on WordPress, migrating from Webflow for better scalability and content control. On-page SEO, structured tags, optimized metadata, and performance improvements boosted search visibility.',
+        tools: ['Figma', 'Webflow', 'SEO', 'CMS'],
+      },
+    ];
+    return {
+      projects: raw.map((p, i) => ({
+        ...p,
+        hasImage: !p.needsSlot,
+        needsSlot: !!p.needsSlot,
+        index: String(i + 1).padStart(2, '0'),
+        imgOrder: i % 2 === 0 ? 1 : 2,
+        textOrder: i % 2 === 0 ? 2 : 1,
+      })),
+    };
+  }
+}
+
+</script>
+</body>
+</html>
