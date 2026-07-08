@@ -33,9 +33,6 @@
   <meta property="og:description" content="Webflow & WordPress developer and IIM Ranchi grad with 15+ projects shipped.">
   <meta property="og:url" content="https://www.rahulohariya.com/about">
   <meta property="og:image" content="https://www.rahulohariya.com/images/og-cover.jpg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:type" content="image/jpeg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="About — Rahul Ohariya">
   <meta name="twitter:description" content="Webflow & WordPress developer and IIM Ranchi grad with 15+ projects shipped.">
@@ -68,7 +65,7 @@
       [data-resp~="nav-cta"] { display:none !important; }
       [data-resp~="nav-hamburger"] { display:flex !important; }
       [data-resp~="nav-pill"] { justify-content:space-between !important; width:100% !important; background:transparent !important; box-shadow:none !important; padding:0 !important; border-radius:0 !important; }
-      [data-resp~="nav-pill"] a[href="/"]:first-child { background:#fdfdfa; color:#0a0a0a; padding:10px 16px; border-radius:100px; }
+      [data-resp~="nav-pill"] a[href="/"]:first-child { background:rgba(10,10,10,0.06); color:#0a0a0a; padding:10px 16px; border-radius:100px; }
     }
   </style>
 </helmet>
@@ -100,7 +97,7 @@
         <a href="/projects" style="color:rgba(10,10,10,0.5); font-size:13.5px; font-weight:600; white-space:nowrap;">Projects</a>
         <a href="/about" style="color:#0a0a0a; font-size:13.5px; font-weight:600; white-space:nowrap;">About</a>
       </div>
-      <a href="https://wa.me/+916261559267" target="_blank" rel="noopener noreferrer" onMouseMove="{{ onMagMove }}" onMouseLeave="{{ onMagLeave }}" style="background:#fdfdfa; color:#0a0a0a; padding:9px 18px; border-radius:100px; font-size:13px; font-weight:700; display:inline-block; transition:transform 0.15s ease-out; white-space:nowrap;" data-resp="nav-cta">Get in touch</a>
+      <a href="https://wa.me/+916261559267" target="_blank" rel="noopener noreferrer" onMouseMove="{{ onMagMove }}" onMouseLeave="{{ onMagLeave }}" style="background:#0a0a0a; color:#fdfdfa; padding:9px 18px; border-radius:100px; font-size:13px; font-weight:700; display:inline-block; transition:transform 0.15s ease-out; white-space:nowrap;" data-resp="nav-cta">Get in touch</a>
       <button onClick="{{ toggleMobileMenu }}" aria-label="Toggle menu" style="display:none; align-items:center; justify-content:center; width:38px; height:38px; border-radius:50%; background:#fdfdfa; border:none; cursor:pointer; flex-shrink:0; padding:0;" data-resp="nav-hamburger">
         <sc-if value="{{ mobileMenuClosed }}" hint-placeholder-val="{{ true }}">
           <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 1H20" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round"/><path d="M0 7H20" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round"/><path d="M0 13H20" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round"/></svg>

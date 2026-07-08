@@ -33,9 +33,6 @@
   <meta property="og:description" content="Fast, conversion-focused websites in Figma, Webflow, and WordPress — from strategy through launch.">
   <meta property="og:url" content="https://www.rahulohariya.com/">
   <meta property="og:image" content="https://www.rahulohariya.com/images/og-cover.jpg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:type" content="image/jpeg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Rahul Ohariya — Web Developer & UI/UX Designer">
   <meta name="twitter:description" content="Fast, conversion-focused websites in Figma, Webflow, and WordPress — from strategy through launch.">
@@ -174,18 +171,7 @@
       </div>
     </div>
 
-    <!-- HERO CAR RUNNER (left to right) -->
-    <div ref="{{ heroCarTrackRef }}" style="position:absolute; bottom:0; left:50%; width:100vw; transform:translateX(-50%); height:110px; overflow:hidden;">
-      <div style="position:absolute; bottom:14px; left:0; right:0; height:3px; background:#0a0a0a;"></div>
-      <div style="position:absolute; bottom:17px; left:0; right:0; height:2px; background-image:repeating-linear-gradient(90deg, rgba(10,10,10,0.35) 0 18px, transparent 18px 34px);"></div>
-      <div style="position:absolute; bottom:14px; right:36px; display:flex; flex-direction:column; align-items:center;" data-resp="car-sign">
-        <div style="background:#fdfdfa; border:2px solid #0a0a0a; border-radius:4px; padding:5px 10px; box-shadow:2px 2px 0 #0a0a0a; transform:rotate(-2deg); margin-bottom:-2px;">
-          <span style="font-family:'Caveat',cursive; font-weight:700; font-size:14px; white-space:nowrap;">Scroll for more →</span>
-        </div>
-        <div style="width:4px; height:26px; background:#0a0a0a;"></div>
-      </div>
-      <img ref="{{ heroCarRef }}" src="images/jimny.png" alt="" onPointerDown="{{ onHeroCarPointerDown }}" style="position:absolute; bottom:16px; left:0; width:280px; height:auto; z-index:1; will-change:transform; transform:translateX(-320px); cursor:grab; touch-action:none;">
-    </div>
+
   </section>
 
   <div style="display:flex; justify-content:center; padding-bottom:40px;">
@@ -290,21 +276,6 @@
       </sc-for>
     </div>
   </section>
-
-  <!-- CAR RUNNER (single pass, before footer) -->
-  <div ref="{{ carTrackRef }}" style="position:relative; height:114px; overflow:hidden;">
-    <div style="position:absolute; bottom:14px; left:0; right:0; height:3px; background:#0a0a0a;"></div>
-    <div style="position:absolute; bottom:17px; left:0; right:0; height:2px; background-image:repeating-linear-gradient(90deg, rgba(10,10,10,0.35) 0 18px, transparent 18px 34px);"></div>
-    <div style="position:absolute; bottom:14px; left:36px; display:flex; flex-direction:column; align-items:center;" data-resp="car-sign">
-      <div style="background:#fdfdfa; border:2px solid #0a0a0a; border-radius:4px; padding:5px 10px; box-shadow:2px 2px 0 #0a0a0a; transform:rotate(2deg); margin-bottom:-2px;">
-        <span style="font-family:'Caveat',cursive; font-weight:700; font-size:14px; white-space:nowrap;">← Nearly there</span>
-      </div>
-      <div style="width:4px; height:26px; background:#0a0a0a;"></div>
-    </div>
-    <div ref="{{ carRef }}" onPointerDown="{{ onCarPointerDown }}" style="position:absolute; bottom:16px; left:0; width:290px; height:auto; z-index:1; will-change:transform; cursor:grab; touch-action:none;">
-      <img src="images/jimny.png" alt="" style="width:100%; height:auto; display:block; transform:scaleX(-1);">
-    </div>
-  </div>
 
   <!-- FOOTER -->
   <footer style="background:#0a0a0a; padding:90px 64px 40px;" data-resp="pad-x">
