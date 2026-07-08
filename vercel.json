@@ -1,0 +1,8 @@
+{
+  "cleanUrls": true,
+  "redirects": [
+    { "source": "/Home.dc.html", "destination": "/", "permanent": true },
+    { "source": "/About.dc.html", "destination": "/about", "permanent": true },
+    { "source": "/Projects.dc.html", "destination": "/projects", "permanent": true }
+  ]
+}

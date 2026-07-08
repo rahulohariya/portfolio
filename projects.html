@@ -12,11 +12,11 @@
   <title>Projects — Rahul Ohariya | Webflow &amp; WordPress Developer</title>
   <meta name="description" content="Selected web design & development projects by Rahul Ohariya, spanning WordPress, Webflow, and Figma — from Queens Quinoa to Mega Mulchers.">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://www.rahulohariya.com/Projects.dc.html">
+  <link rel="canonical" href="https://www.rahulohariya.com/projects">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Projects — Rahul Ohariya">
   <meta property="og:description" content="Selected web design & development case studies in WordPress, Webflow, and Figma.">
-  <meta property="og:url" content="https://www.rahulohariya.com/Projects.dc.html">
+  <meta property="og:url" content="https://www.rahulohariya.com/projects">
   <meta property="og:image" content="https://www.rahulohariya.com/images/og-cover.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Projects — Rahul Ohariya">
@@ -45,7 +45,7 @@
       [data-resp="nav-cta"] { display:none !important; }
       [data-resp="nav-hamburger"] { display:flex !important; }
       [data-resp="nav-pill"] { justify-content:space-between !important; width:100% !important; background:transparent !important; box-shadow:none !important; padding:0 !important; border-radius:0 !important; }
-      [data-resp="nav-pill"] a[href="Home.dc.html"]:first-child { background:#0a0a0a; color:#fdfdfa; padding:10px 16px; border-radius:100px; }
+      [data-resp="nav-pill"] a[href="/"]:first-child { background:#0a0a0a; color:#fdfdfa; padding:10px 16px; border-radius:100px; }
       [data-resp="proj-grid"] { gap:20px !important; }
     }
   </style>
@@ -70,14 +70,14 @@
   <!-- NAV -->
   <nav style="position:sticky; top:0; z-index:50; display:flex; justify-content:center; padding:18px 24px 0;">
     <div style="display:flex; align-items:center; gap:36px; background:#0a0a0a; border-radius:100px; padding:12px 14px 12px 24px; box-shadow:0 10px 30px rgba(0,0,0,0.25); max-width:100%; font-family:'Sora',sans-serif;" data-resp="nav-pill">
-      <a href="Home.dc.html" style="display:flex; align-items:center; gap:9px; font-weight:700; font-size:15px; color:#fdfdfa; letter-spacing:-0.01em; white-space:nowrap;">
+      <a href="/" style="display:flex; align-items:center; gap:9px; font-weight:700; font-size:15px; color:#fdfdfa; letter-spacing:-0.01em; white-space:nowrap;">
         <img src="images/logo.png" alt="Rahul Ohariya" style="width:26px; height:26px; border-radius:50%; object-fit:cover; display:block;">
         Rahul O.
       </a>
       <div style="display:flex; align-items:center; gap:26px;" data-resp="nav-links">
-        <a href="Home.dc.html" style="color:rgba(253,253,250,0.55); font-size:13.5px; font-weight:600; white-space:nowrap;">Home</a>
-        <a href="Projects.dc.html" style="color:#fdfdfa; font-size:13.5px; font-weight:600; white-space:nowrap;">Projects</a>
-        <a href="About.dc.html" style="color:rgba(253,253,250,0.55); font-size:13.5px; font-weight:600; white-space:nowrap;">About</a>
+        <a href="/" style="color:rgba(253,253,250,0.55); font-size:13.5px; font-weight:600; white-space:nowrap;">Home</a>
+        <a href="/projects" style="color:#fdfdfa; font-size:13.5px; font-weight:600; white-space:nowrap;">Projects</a>
+        <a href="/about" style="color:rgba(253,253,250,0.55); font-size:13.5px; font-weight:600; white-space:nowrap;">About</a>
       </div>
       <a href="https://wa.me/+916261559267" target="_blank" rel="noopener noreferrer" onMouseMove="{{ onMagMove }}" onMouseLeave="{{ onMagLeave }}" style="background:#fdfdfa; color:#0a0a0a; padding:9px 18px; border-radius:100px; font-size:13px; font-weight:700; display:inline-block; transition:transform 0.15s ease-out; white-space:nowrap;" data-resp="nav-cta">Get in touch</a>
       <button onClick="{{ toggleMobileMenu }}" aria-label="Toggle menu" style="display:none; align-items:center; justify-content:center; width:38px; height:38px; border-radius:50%; background:#0a0a0a; border:none; cursor:pointer; flex-shrink:0; padding:0;" data-resp="nav-hamburger">
@@ -94,9 +94,9 @@
   <sc-if value="{{ mobileMenuOpen }}" hint-placeholder-val="{{ false }}">
     <div onClick="{{ toggleMobileMenu }}" style="position:fixed; inset:0; z-index:49; background:rgba(10,10,10,0.5);"></div>
     <div style="position:fixed; top:74px; left:16px; right:16px; z-index:50; background:#0a0a0a; border-radius:20px; box-shadow:0 20px 50px rgba(0,0,0,0.4); padding:18px; display:flex; flex-direction:column; gap:4px; font-family:'Sora',sans-serif;">
-      <a href="Home.dc.html" style="color:rgba(253,253,250,0.7); font-size:17px; font-weight:600; padding:13px 12px; border-radius:12px;">Home</a>
-      <a href="Projects.dc.html" style="color:#fdfdfa; font-size:17px; font-weight:600; padding:13px 12px; border-radius:12px;">Projects</a>
-      <a href="About.dc.html" style="color:rgba(253,253,250,0.7); font-size:17px; font-weight:600; padding:13px 12px; border-radius:12px;">About</a>
+      <a href="/" style="color:rgba(253,253,250,0.7); font-size:17px; font-weight:600; padding:13px 12px; border-radius:12px;">Home</a>
+      <a href="/projects" style="color:#fdfdfa; font-size:17px; font-weight:600; padding:13px 12px; border-radius:12px;">Projects</a>
+      <a href="/about" style="color:rgba(253,253,250,0.7); font-size:17px; font-weight:600; padding:13px 12px; border-radius:12px;">About</a>
       <a href="https://wa.me/+916261559267" target="_blank" rel="noopener noreferrer" style="margin-top:8px; background:#fdfdfa; color:#0a0a0a; padding:13px 12px; border-radius:12px; font-weight:700; font-size:15px; text-align:center;">Get in touch</a>
     </div>
   </sc-if>
@@ -157,9 +157,9 @@
       <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; padding-top:24px;">
         <span style="font-size:13px; color:rgba(253,253,250,0.4);">© 2026 Rahul Ohariya</span>
         <nav style="display:flex; gap:28px;">
-          <a href="Home.dc.html" style="color:rgba(253,253,250,0.55); font-size:13px; font-weight:600;">Home</a>
-          <a href="Projects.dc.html" style="color:#fdfdfa; font-size:13px; font-weight:600;">Projects</a>
-          <a href="About.dc.html" style="color:rgba(253,253,250,0.55); font-size:13px; font-weight:600;">About</a>
+          <a href="/" style="color:rgba(253,253,250,0.55); font-size:13px; font-weight:600;">Home</a>
+          <a href="/projects" style="color:#fdfdfa; font-size:13px; font-weight:600;">Projects</a>
+          <a href="/about" style="color:rgba(253,253,250,0.55); font-size:13px; font-weight:600;">About</a>
         </nav>
       </div>
     </div>
