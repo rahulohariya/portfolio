@@ -22,7 +22,7 @@
   <meta name="twitter:description" content="Webflow & WordPress developer and IIM Ranchi grad with 15+ projects shipped.">
   <meta name="twitter:image" content="https://www.rahulohariya.com/images/portrait-about.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
     body { margin: 0; background: #0a0a0a; }
     ::selection { background: #ddff33; color: #0a0a0a; }
@@ -44,24 +44,60 @@
       [data-resp~="nav-pill"] { flex-wrap:wrap !important; justify-content:center !important; gap:8px 14px !important; padding:10px 16px !important; border-radius:20px !important; }
       [data-resp~="nav-links"] { gap:14px !important; }
       [data-resp~="nav-pill"] a { font-size:12px !important; }
+      [data-resp~="nav-links"] { display:none !important; }
+      [data-resp~="nav-cta"] { display:none !important; }
+      [data-resp~="nav-hamburger"] { display:flex !important; }
+      [data-resp~="nav-pill"] { justify-content:space-between !important; width:100% !important; background:transparent !important; box-shadow:none !important; padding:0 !important; border-radius:0 !important; }
+      [data-resp~="nav-pill"] a[href="Home.dc.html"]:first-child { background:#fdfdfa; color:#0a0a0a; padding:10px 16px; border-radius:100px; }
     }
   </style>
 </helmet>
 
 <div style="background:#0a0a0a; color:#fdfdfa; font-family:'Space Grotesk',sans-serif; min-height:100vh;" data-screen-label="About">
 
+  <sc-if value="{{ loading }}" hint-placeholder-val="{{ true }}">
+    <div style="position:fixed; inset:0; z-index:99999; background:#0a0a0a; display:flex; flex-direction:column; align-items:center; justify-content:center; opacity:{{ loaderOpacity }}; transition:opacity 0.5s ease; pointer-events:none;">
+      <canvas ref="{{ matrixCanvasRef }}" style="position:absolute; inset:0; width:100%; height:100%;"></canvas>
+      <div style="position:relative; display:flex; flex-direction:column; align-items:center; gap:18px;">
+        <div style="font-family:'Space Grotesk',monospace; font-weight:700; font-size:14px; letter-spacing:0.3em; color:#5fff6e; text-shadow:0 0 8px rgba(95,255,110,0.7);">LOADING</div>
+        <div style="width:220px; height:6px; background:rgba(95,255,110,0.15); border:1px solid rgba(95,255,110,0.4); border-radius:3px; overflow:hidden;">
+          <div style="height:100%; width:{{ loadProgress }}%; background:#5fff6e; box-shadow:0 0 8px #5fff6e; transition:width 0.2s ease;"></div>
+        </div>
+        <div style="font-family:'Space Grotesk',monospace; font-size:12px; color:rgba(95,255,110,0.75);">{{ loadProgressLabel }}%</div>
+      </div>
+    </div>
+  </sc-if>
+
   <!-- NAV -->
   <nav style="position:sticky; top:0; z-index:50; display:flex; justify-content:center; padding:18px 24px 0;">
-    <div style="display:flex; align-items:center; gap:36px; background:#fdfdfa; border-radius:100px; padding:12px 14px 12px 24px; box-shadow:0 10px 30px rgba(0,0,0,0.35); max-width:100%;" data-resp="nav-pill">
+    <div style="display:flex; align-items:center; gap:36px; background:#fdfdfa; border-radius:100px; padding:12px 14px 12px 24px; box-shadow:0 10px 30px rgba(0,0,0,0.35); max-width:100%; font-family:'Sora',sans-serif;" data-resp="nav-pill">
       <a href="Home.dc.html" style="font-weight:700; font-size:15px; color:#0a0a0a; letter-spacing:-0.01em; white-space:nowrap;">Rahul O.</a>
       <div style="display:flex; align-items:center; gap:26px;" data-resp="nav-links">
         <a href="Home.dc.html" style="color:rgba(10,10,10,0.5); font-size:13.5px; font-weight:600; white-space:nowrap;">Home</a>
         <a href="Projects.dc.html" style="color:rgba(10,10,10,0.5); font-size:13.5px; font-weight:600; white-space:nowrap;">Projects</a>
         <a href="About.dc.html" style="color:#0a0a0a; font-size:13.5px; font-weight:600; white-space:nowrap;">About</a>
       </div>
-      <a href="https://wa.me/+916261559267" target="_blank" rel="noopener noreferrer" onMouseMove="{{ onMagMove }}" onMouseLeave="{{ onMagLeave }}" style="background:#0a0a0a; color:#ddff33; padding:9px 18px; border-radius:100px; font-size:13px; font-weight:700; display:inline-block; transition:transform 0.15s ease-out; white-space:nowrap;">Get in touch</a>
+      <a href="https://wa.me/+916261559267" target="_blank" rel="noopener noreferrer" onMouseMove="{{ onMagMove }}" onMouseLeave="{{ onMagLeave }}" style="background:#fdfdfa; color:#0a0a0a; padding:9px 18px; border-radius:100px; font-size:13px; font-weight:700; display:inline-block; transition:transform 0.15s ease-out; white-space:nowrap;" data-resp="nav-cta">Get in touch</a>
+      <button onClick="{{ toggleMobileMenu }}" aria-label="Toggle menu" style="display:none; align-items:center; justify-content:center; width:38px; height:38px; border-radius:50%; background:#fdfdfa; border:none; cursor:pointer; flex-shrink:0; padding:0;" data-resp="nav-hamburger">
+        <sc-if value="{{ mobileMenuClosed }}" hint-placeholder-val="{{ true }}">
+          <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 1H20" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round"/><path d="M0 7H20" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round"/><path d="M0 13H20" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round"/></svg>
+        </sc-if>
+        <sc-if value="{{ mobileMenuOpen }}" hint-placeholder-val="{{ false }}">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L15 15M15 1L1 15" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round"/></svg>
+        </sc-if>
+      </button>
     </div>
   </nav>
+
+  <sc-if value="{{ mobileMenuOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ toggleMobileMenu }}" style="position:fixed; inset:0; z-index:49; background:rgba(10,10,10,0.35);"></div>
+    <div style="position:fixed; top:74px; left:16px; right:16px; z-index:50; background:#fdfdfa; border-radius:20px; box-shadow:0 20px 50px rgba(0,0,0,0.25); padding:18px; display:flex; flex-direction:column; gap:4px; font-family:'Sora',sans-serif;">:column; gap:4px;">
+      <a href="Home.dc.html" style="color:rgba(10,10,10,0.6); font-size:17px; font-weight:600; padding:13px 12px; border-radius:12px;">Home</a>
+      <a href="Projects.dc.html" style="color:rgba(10,10,10,0.6); font-size:17px; font-weight:600; padding:13px 12px; border-radius:12px;">Projects</a>
+      <a href="About.dc.html" style="color:#0a0a0a; font-size:17px; font-weight:600; padding:13px 12px; border-radius:12px;">About</a>
+      <a href="https://wa.me/+916261559267" target="_blank" rel="noopener noreferrer" style="margin-top:8px; background:#fdfdfa; color:#0a0a0a; padding:13px 12px; border-radius:12px; font-weight:700; font-size:15px; text-align:center;">Get in touch</a>
+    </div>
+  </sc-if>
 
   <!-- HERO: editorial split, portrait as full-bleed panel with overlaid caption -->
   <section style="display:grid; grid-template-columns:1fr 0.9fr; align-items:stretch; min-height:calc(100vh - 77px);" data-resp="hero-grid">
@@ -196,11 +232,14 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { revealed: { services: false } };
+  state = { revealed: { services: false }, mobileMenuOpen: false, loading: true, loadProgress: 0, loaderOpacity: 1 };
+  toggleMobileMenu = () => this.setState((s) => ({ mobileMenuOpen: !s.mobileMenuOpen }));
   servicesRef = React.createRef();
   cursorRef = React.createRef();
+  matrixCanvasRef = React.createRef();
 
   componentDidMount() {
+    this.startLoader();
     this.observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -276,11 +315,76 @@ class Component extends DCLogic {
     e.currentTarget.style.transform = 'translate(0,0)';
   };
 
+  startLoader = () => {
+    const canvas = this.matrixCanvasRef.current;
+    let ctx, cols, drops, charW = 16;
+    const chars = 'アイウエオカキクケコサシスセソタチツテト0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const resize = () => {
+      if (!canvas) return;
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      cols = Math.floor(canvas.width / charW);
+      drops = Array.from({ length: cols }, () => Math.floor(Math.random() * -40));
+    };
+    if (canvas) {
+      ctx = canvas.getContext('2d');
+      resize();
+      window.addEventListener('resize', resize);
+      this.matrixResizeHandler = resize;
+    }
+    this.matrixInterval = setInterval(() => {
+      if (!ctx) return;
+      ctx.fillStyle = 'rgba(10,10,10,0.18)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#5fff6e';
+      ctx.font = charW + 'px monospace';
+      for (let i = 0; i < drops.length; i++) {
+        const ch = chars[Math.floor(Math.random() * chars.length)];
+        ctx.fillText(ch, i * charW, drops[i] * charW);
+        if (drops[i] * charW > canvas.height && Math.random() > 0.975) drops[i] = 0;
+        drops[i]++;
+      }
+    }, 45);
+
+    this.progressTarget = 8;
+    this.progressInterval = setInterval(() => {
+      this.progressTarget = Math.min(this.progressTarget + Math.random() * 6, 92);
+      this.setState(s => ({ loadProgress: Math.max(s.loadProgress, this.progressTarget) }));
+    }, 180);
+
+    const finish = () => {
+      if (this.finished) return;
+      this.finished = true;
+      this.setState({ loadProgress: 100 });
+      clearInterval(this.progressInterval);
+      setTimeout(() => {
+        this.setState({ loaderOpacity: 0 });
+        setTimeout(() => {
+          this.setState({ loading: false });
+          clearInterval(this.matrixInterval);
+          if (this.matrixResizeHandler) window.removeEventListener('resize', this.matrixResizeHandler);
+        }, 520);
+      }, 260);
+    };
+    const ready = () => Promise.all([
+      document.fonts ? document.fonts.ready : Promise.resolve(),
+      new Promise(res => { if (document.readyState === 'complete') res(); else window.addEventListener('load', res, { once: true }); }),
+    ]);
+    ready().then(() => setTimeout(finish, 700));
+    setTimeout(finish, 4000);
+  };
+
   renderVals() {
     const r = this.state.revealed;
     const icon = (d) => ({ __html: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">${d}</svg>` });
     return {
       servicesRef: this.servicesRef, cursorRef: this.cursorRef,
+      mobileMenuOpen: this.state.mobileMenuOpen,
+      mobileMenuClosed: !this.state.mobileMenuOpen,
+      toggleMobileMenu: this.toggleMobileMenu,
+      loading: this.state.loading, loadProgress: Math.round(this.state.loadProgress),
+      loadProgressLabel: Math.round(this.state.loadProgress), loaderOpacity: this.state.loaderOpacity,
+      matrixCanvasRef: this.matrixCanvasRef,
       servicesOpacity: r.services ? '1' : '0',
       servicesTransform: r.services ? 'translateY(0)' : 'translateY(28px)',
       onMagMove: this.onMagMove, onMagLeave: this.onMagLeave,
