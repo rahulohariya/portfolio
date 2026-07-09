@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>About — Rahul Ohariya | Webflow &amp; WordPress Developer</title>
-<meta name="description" content="Rahul Ohariya is a Webflow & WordPress developer and IIM Ranchi grad with 15+ projects shipped — from strategy to launch for startups.">
+<meta name="description" content="Rahul Ohariya is a Webflow & WordPress developer and IIM Ranchi grad with 25+ projects shipped — from strategy to launch for startups.">
+<meta name="robots" content="index, follow">
 <link rel="canonical" href="https://www.rahulohariya.com/about">
 <meta property="og:type" content="profile">
 <meta property="og:title" content="About — Rahul Ohariya">
-<meta property="og:description" content="Webflow & WordPress developer and IIM Ranchi grad with 15+ projects shipped.">
+<meta property="og:description" content="Webflow & WordPress developer and IIM Ranchi grad with 25+ projects shipped.">
 <meta property="og:url" content="https://www.rahulohariya.com/about">
 <meta property="og:image" content="https://www.rahulohariya.com/images/og-cover.jpg">
 <meta property="og:image:width" content="1200">
@@ -16,433 +17,129 @@
 <meta property="og:image:type" content="image/jpeg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="About — Rahul Ohariya">
-<meta name="twitter:description" content="Webflow & WordPress developer and IIM Ranchi grad with 15+ projects shipped.">
+<meta name="twitter:description" content="Webflow & WordPress developer and IIM Ranchi grad with 25+ projects shipped.">
 <meta name="twitter:image" content="https://www.rahulohariya.com/images/og-cover.jpg">
-<script src="./support.js"></script>
+<link rel="icon" type="image/png" href="images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<x-dc>
-<helmet data-dc-atomics>
-  <link rel="icon" type="image/png" href="images/logo.png">
-  <title>About — Rahul Ohariya | Webflow &amp; WordPress Developer</title>
-  <meta name="description" content="Rahul Ohariya is a Webflow & WordPress developer and IIM Ranchi grad with 15+ projects shipped — from strategy to launch for startups.">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://www.rahulohariya.com/about">
-  <meta property="og:type" content="profile">
-  <meta property="og:title" content="About — Rahul Ohariya">
-  <meta property="og:description" content="Webflow & WordPress developer and IIM Ranchi grad with 15+ projects shipped.">
-  <meta property="og:url" content="https://www.rahulohariya.com/about">
-  <meta property="og:image" content="https://www.rahulohariya.com/images/og-cover.jpg">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="About — Rahul Ohariya">
-  <meta name="twitter:description" content="Webflow & WordPress developer and IIM Ranchi grad with 15+ projects shipped.">
-  <meta name="twitter:image" content="https://www.rahulohariya.com/images/og-cover.jpg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
-  <style>
-    body { margin: 0; background: #0a0a0a; overflow-x: hidden; }
-    ::selection { background: #ddff33; color: #0a0a0a; }
-    a { text-decoration: none; }
-    @keyframes marquee { 0% { transform:translateX(0); } 100% { transform:translateX(-50%); } }
-
-    @media (max-width: 1024px) {
-      [data-resp~="pad-x"] { padding-left:40px !important; padding-right:40px !important; }
-    }
-    @media (max-width: 860px) {
-      [data-resp~="hero-grid"] { grid-template-columns:1fr !important; }
-      [data-resp~="hero-portrait"] { aspect-ratio:4/5 !important; padding:20px !important; }
-      [data-resp~="hero-portrait"] > div { width:85% !important; }
-      [data-resp~="services-grid"] { grid-template-columns:1fr !important; }
-      [data-resp~="timeline"] { flex-direction:column !important; align-items:flex-start !important; gap:36px !important; }
-      [data-resp~="timeline"] .tl-line { display:none !important; }
-    }
-    @media (max-width: 640px) {
-      [data-resp~="pad-x"] { padding-left:20px !important; padding-right:20px !important; }
-      [data-resp~="nav-pill"] { flex-wrap:wrap !important; justify-content:center !important; gap:8px 14px !important; padding:10px 16px !important; border-radius:20px !important; }
-      [data-resp~="nav-links"] { gap:14px !important; }
-      [data-resp~="nav-pill"] a { font-size:12px !important; }
-      [data-resp~="nav-links"] { display:none !important; }
-      [data-resp~="nav-cta"] { display:none !important; }
-      [data-resp~="nav-hamburger"] { display:flex !important; }
-      [data-resp~="nav-pill"] { justify-content:space-between !important; width:100% !important; background:transparent !important; box-shadow:none !important; padding:0 !important; border-radius:0 !important; }
-      [data-resp~="nav-pill"] a[href="/"]:first-child { background:rgba(10,10,10,0.06); color:#0a0a0a; padding:10px 16px; border-radius:100px; }
-    }
-  </style>
-</helmet>
-
-<div style="background:#0a0a0a; color:#fdfdfa; font-family:'Space Grotesk',sans-serif; min-height:100vh;" data-screen-label="About">
-
-  <sc-if value="{{ loading }}" hint-placeholder-val="{{ true }}">
-    <div style="position:fixed; inset:0; z-index:99999; background:#0a0a0a; display:flex; flex-direction:column; align-items:center; justify-content:center; opacity:{{ loaderOpacity }}; transition:opacity 0.5s ease; pointer-events:none;">
-      <canvas ref="{{ matrixCanvasRef }}" style="position:absolute; inset:0; width:100%; height:100%;"></canvas>
-      <div style="position:relative; display:flex; flex-direction:column; align-items:center; gap:18px;">
-        <div style="font-family:'Space Grotesk',monospace; font-weight:700; font-size:14px; letter-spacing:0.3em; color:#5fff6e; text-shadow:0 0 8px rgba(95,255,110,0.7);">LOADING</div>
-        <div style="width:220px; height:6px; background:rgba(95,255,110,0.15); border:1px solid rgba(95,255,110,0.4); border-radius:3px; overflow:hidden;">
-          <div style="height:100%; width:{{ loadProgress }}%; background:#5fff6e; box-shadow:0 0 8px #5fff6e; transition:width 0.2s ease;"></div>
-        </div>
-        <div style="font-family:'Space Grotesk',monospace; font-size:12px; color:rgba(95,255,110,0.75);">{{ loadProgressLabel }}%</div>
-      </div>
-    </div>
-  </sc-if>
-
-  <!-- NAV -->
-  <nav style="position:sticky; top:0; z-index:50; display:flex; justify-content:center; padding:18px 24px 0;">
-    <div style="display:flex; align-items:center; gap:36px; background:#fdfdfa; border-radius:100px; padding:12px 14px 12px 24px; box-shadow:0 10px 30px rgba(0,0,0,0.35); max-width:100%; font-family:'Sora',sans-serif;" data-resp="nav-pill">
-      <a href="/" style="display:flex; align-items:center; gap:9px; font-weight:700; font-size:15px; color:#0a0a0a; letter-spacing:-0.01em; white-space:nowrap;">
-        <img src="images/logo.png" alt="Rahul Ohariya" style="width:26px; height:26px; border-radius:50%; object-fit:cover; display:block;">
-        Rahul O.
-      </a>
-      <div style="display:flex; align-items:center; gap:26px;" data-resp="nav-links">
-        <a href="/" style="color:rgba(10,10,10,0.5); font-size:13.5px; font-weight:600; white-space:nowrap;">Home</a>
-        <a href="/projects" style="color:rgba(10,10,10,0.5); font-size:13.5px; font-weight:600; white-space:nowrap;">Projects</a>
-        <a href="/about" style="color:#0a0a0a; font-size:13.5px; font-weight:600; white-space:nowrap;">About</a>
-      </div>
-      <a href="https://wa.me/+916261559267" target="_blank" rel="noopener noreferrer" onMouseMove="{{ onMagMove }}" onMouseLeave="{{ onMagLeave }}" style="background:#0a0a0a; color:#fdfdfa; padding:9px 18px; border-radius:100px; font-size:13px; font-weight:700; display:inline-block; transition:transform 0.15s ease-out; white-space:nowrap;" data-resp="nav-cta">Get in touch</a>
-      <button onClick="{{ toggleMobileMenu }}" aria-label="Toggle menu" style="display:none; align-items:center; justify-content:center; width:38px; height:38px; border-radius:50%; background:#fdfdfa; border:none; cursor:pointer; flex-shrink:0; padding:0;" data-resp="nav-hamburger">
-        <sc-if value="{{ mobileMenuClosed }}" hint-placeholder-val="{{ true }}">
-          <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 1H20" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round"/><path d="M0 7H20" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round"/><path d="M0 13H20" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round"/></svg>
-        </sc-if>
-        <sc-if value="{{ mobileMenuOpen }}" hint-placeholder-val="{{ false }}">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L15 15M15 1L1 15" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round"/></svg>
-        </sc-if>
-      </button>
-    </div>
-  </nav>
-
-  <sc-if value="{{ mobileMenuOpen }}" hint-placeholder-val="{{ false }}">
-    <div onClick="{{ toggleMobileMenu }}" style="position:fixed; inset:0; z-index:49; background:rgba(10,10,10,0.35);"></div>
-    <div style="position:fixed; top:74px; left:16px; right:16px; z-index:50; background:#fdfdfa; border-radius:20px; box-shadow:0 20px 50px rgba(0,0,0,0.25); padding:18px; display:flex; flex-direction:column; gap:4px; font-family:'Sora',sans-serif;">:column; gap:4px;">
-      <a href="/" style="color:rgba(10,10,10,0.6); font-size:17px; font-weight:600; padding:13px 12px; border-radius:12px;">Home</a>
-      <a href="/projects" style="color:rgba(10,10,10,0.6); font-size:17px; font-weight:600; padding:13px 12px; border-radius:12px;">Projects</a>
-      <a href="/about" style="color:#0a0a0a; font-size:17px; font-weight:600; padding:13px 12px; border-radius:12px;">About</a>
-      <a href="https://wa.me/+916261559267" target="_blank" rel="noopener noreferrer" style="margin-top:8px; background:#fdfdfa; color:#0a0a0a; padding:13px 12px; border-radius:12px; font-weight:700; font-size:15px; text-align:center;">Get in touch</a>
-    </div>
-  </sc-if>
-
-  <!-- HERO: editorial split, portrait as full-bleed panel with overlaid caption -->
-  <section style="display:grid; grid-template-columns:1fr 0.9fr; align-items:stretch; min-height:calc(100vh - 77px); width:100%; max-width:100vw; box-sizing:border-box; overflow:hidden;" data-resp="hero-grid">
-    <div style="display:flex; flex-direction:column; justify-content:center; padding:60px 64px; min-width:0; width:100%; box-sizing:border-box; overflow-wrap:break-word;" data-resp="pad-x">
-      <div style="color:rgba(253,253,250,0.45); font-weight:700; font-size:13px; letter-spacing:0.15em; text-transform:uppercase; margin-bottom:20px;">01 — About</div>
-      <h1 style="font-family:'Caveat',cursive; font-size:clamp(48px,6.5vw,88px); line-height:0.98; font-weight:700; margin:0 0 12px;">
-        Rahul<br>Ohariya.
-      </h1>
-      <div style="font-size:14px; color:rgba(253,253,250,0.5); margin-bottom:24px;">Webflow &amp; WordPress Developer · IIM Ranchi</div>
-      <p style="font-size:18px; line-height:1.8; color:rgba(253,253,250,0.72); max-width:100%; width:min(460px,100%); margin:0 0 16px; overflow-wrap:break-word; box-sizing:border-box;">
-        Web developer and SEO expert with 25+ shipped projects in
-        <span style="background:#ddff33; color:#0a0a0a; padding:1px 8px; display:inline-block; transform:rotate(-1deg);">Figma, Webflow,</span>
-        and
-        <span style="background:#ddff33; color:#0a0a0a; padding:1px 8px; display:inline-block; transform:rotate(1deg);">WordPress.</span>
-        Builds sites that look sharp and rank well.
-      </p>
-      <p style="font-size:18px; line-height:1.8; color:rgba(253,253,250,0.72); max-width:100%; width:min(460px,100%); margin:0 0 36px; overflow-wrap:break-word; box-sizing:border-box;">
-        Backed by solid client relations and dependable project management — bringing the same care to content creation and digital campaigns.
-      </p>
-      <div style="display:flex; gap:14px; flex-wrap:wrap;">
-        <a href="/projects" onMouseMove="{{ onMagMove }}" onMouseLeave="{{ onMagLeave }}" style="background:#ddff33; color:#0a0a0a; padding:14px 26px; border-radius:100px; font-weight:700; font-size:14px; display:inline-block; transition:transform 0.15s ease-out;">View my work →</a>
-        <a href="https://wa.me/+916261559267" target="_blank" rel="noopener noreferrer" onMouseMove="{{ onMagMove }}" onMouseLeave="{{ onMagLeave }}" style="background:transparent; color:#fdfdfa; padding:14px 26px; border-radius:100px; font-weight:700; font-size:14px; border:2px solid #fdfdfa; display:inline-block; transition:transform 0.15s ease-out;">Say hi</a>
-      </div>
-    </div>
-    <div data-resp="hero-portrait" style="display:flex; flex-direction:column; align-items:center; justify-content:center; padding:40px; width:100%; min-width:0; box-sizing:border-box; overflow:hidden;">
-      <div style="width:55.5%; max-width:100%; border-radius:10px; overflow:hidden; border:2px solid rgba(253,253,250,0.15); aspect-ratio:1/1; background:#fdfdfa;">
-        <img src="images/portrait-about.png" alt="Rahul Ohariya portrait sketch" style="width:100%; height:100%; object-fit:cover; object-position:50% 15%; display:block;">
-      </div>
-      <div style="margin-top:18px; width:55.5%; max-width:100%;">
-        <div style="font-family:'Caveat',cursive; font-size:24px; font-weight:600; color:#fdfdfa;">"Doing more with less."</div>
-        <div style="font-size:12.5px; color:rgba(253,253,250,0.55); margin-top:4px;">Based in India · Open to freelance work</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TIMELINE -->
-  <section style="max-width:1440px; margin:0 auto; padding:100px 64px;" data-resp="pad-x">
-    <div style="color:rgba(253,253,250,0.45); font-weight:700; font-size:13px; letter-spacing:0.15em; text-transform:uppercase; margin-bottom:16px;">02 — Journey</div>
-    <h2 style="font-family:'Caveat',cursive; font-size:clamp(32px,4vw,48px); font-weight:700; margin:0 0 56px; max-width:700px;">How I got here.</h2>
-    <div style="position:relative; display:flex; justify-content:space-between; gap:24px;" data-resp="timeline">
-      <div class="tl-line" style="position:absolute; top:9px; left:0; right:0; height:2px; background:rgba(253,253,250,0.15);"></div>
-      <sc-for list="{{ timeline }}" as="tl" hint-placeholder-count="4">
-        <div style="position:relative; flex:1 1 0; min-width:160px; padding-top:28px;">
-          <div style="position:absolute; top:0; left:0; width:18px; height:18px; border-radius:50%; background:#ddff33; border:2px solid #0a0a0a; box-shadow:0 0 0 2px rgba(253,253,250,0.15);"></div>
-          <div style="font-family:'Caveat',cursive; font-size:22px; font-weight:700; color:#ddff33; margin-bottom:6px;">{{ tl.year }}</div>
-          <div style="font-size:14.5px; line-height:1.6; color:rgba(253,253,250,0.65); max-width:220px;">{{ tl.text }}</div>
-        </div>
-      </sc-for>
-    </div>
-  </section>
-
-  <!-- EDUCATION -->
-  <section style="max-width:1440px; margin:0 auto; padding:0 64px 100px;" data-resp="pad-x">
-    <div style="color:rgba(253,253,250,0.45); font-weight:700; font-size:13px; letter-spacing:0.15em; text-transform:uppercase; margin-bottom:24px;">Education</div>
-    <div style="display:flex; align-items:flex-start; gap:20px; flex-wrap:wrap; border-top:1.5px solid rgba(253,253,250,0.15); padding-top:28px;">
-      <div style="width:52px; height:52px; border-radius:8px; background:#fdfdfa; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-        <span style="font-family:'Caveat',cursive; font-weight:700; font-size:18px; color:#0a0a0a;">IIM</span>
-      </div>
-      <div>
-        <h3 style="font-family:'Caveat',cursive; font-size:26px; font-weight:700; margin:0 0 4px;">Indian Institute of Management, Ranchi</h3>
-        <div style="font-size:14.5px; color:rgba(253,253,250,0.65); margin-bottom:4px;">Integrated Programme in Management (BBA)</div>
-        <div style="font-size:13px; color:rgba(253,253,250,0.45);">Oct 2022 – Jul 2025</div>
-      </div>
-    </div>
-    <div style="display:flex; align-items:flex-start; gap:20px; flex-wrap:wrap; border-top:1.5px solid rgba(253,253,250,0.15); padding-top:28px; margin-top:28px;">
-      <div style="width:52px; height:52px; border-radius:8px; background:#fdfdfa; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-        <span style="font-family:'Caveat',cursive; font-weight:700; font-size:15px; color:#0a0a0a;">JNV</span>
-      </div>
-      <div>
-        <h3 style="font-family:'Caveat',cursive; font-size:26px; font-weight:700; margin:0 0 4px;">Jawahar Navodaya Vidyalaya — JNV</h3>
-        <div style="font-size:14.5px; color:rgba(253,253,250,0.65); margin-bottom:4px;">High School Diploma</div>
-        <div style="font-size:13px; color:rgba(253,253,250,0.45);">Sep 2014 – Apr 2019</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SERVICES: icon + text grid, distinct from Home's numbered list -->
-  <section ref="{{ servicesRef }}" style="max-width:1440px; margin:0 auto; padding:0 64px 100px; opacity:{{ servicesOpacity }}; transform:{{ servicesTransform }}; transition:opacity 0.8s ease, transform 0.8s ease;" data-resp="pad-x">
-    <div style="color:rgba(253,253,250,0.45); font-weight:700; font-size:13px; letter-spacing:0.15em; text-transform:uppercase; margin-bottom:16px;">03 — What I do</div>
-    <h2 style="font-family:'Caveat',cursive; font-size:clamp(32px,4vw,48px); font-weight:700; margin:0 0 48px; max-width:700px;">Strategy to launch.</h2>
-    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:rgba(253,253,250,0.12);" data-resp="services-grid">
-      <sc-for list="{{ services }}" as="s" hint-placeholder-count="6">
-        <div style="background:#0a0a0a; padding:32px 28px;">
-          <div style="width:34px; height:34px; color:#ddff33; margin-bottom:20px;" dangerouslySetInnerHTML="{{ s.svg }}"></div>
-          <h3 style="font-family:'Caveat',cursive; font-size:23px; font-weight:700; margin:0 0 8px;">{{ s.title }}</h3>
-          <p style="font-size:13.5px; line-height:1.6; color:rgba(253,253,250,0.55); margin:0;">{{ s.desc }}</p>
-        </div>
-      </sc-for>
-    </div>
-  </section>
-
-  <!-- TOOLS: infinite marquee ticker, distinct from Home's bento -->
-  <section style="padding:60px 0; border-top:1.5px solid rgba(253,253,250,0.12); border-bottom:1.5px solid rgba(253,253,250,0.12); overflow:hidden;">
-    <div style="display:flex; width:max-content; animation:marquee 22s linear infinite;">
-      <sc-for list="{{ marqueeTools }}" as="t" hint-placeholder-count="16">
-        <div style="display:flex; align-items:center; gap:14px; padding:0 40px; white-space:nowrap;">
-          <div style="width:26px; height:26px; color:#fdfdfa; flex-shrink:0;" dangerouslySetInnerHTML="{{ t.svg }}"></div>
-          <span style="font-family:'Caveat',cursive; font-size:26px; font-weight:600; color:rgba(253,253,250,0.85);">{{ t.name }}</span>
-        </div>
-      </sc-for>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer style="background:#0a0a0a; padding:90px 64px 40px;" data-resp="pad-x">
-    <div style="max-width:1440px; margin:0 auto;">
-      <h2 style="font-family:'Caveat',cursive; font-size:clamp(26px,3.2vw,42px); font-weight:700; color:#fdfdfa; margin:0 0 44px; line-height:1.1; max-width:900px;">
-        Got a project in mind?
-        <span style="background:#ddff33; color:#0a0a0a; padding:2px 12px; display:inline-block; transform:rotate(-1deg);">Let's talk.</span>
-      </h2>
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:24px; padding-bottom:36px; border-bottom:1.5px solid rgba(253,253,250,0.18);">
-        <a href="mailto:hi@rahulohariya.com" onMouseMove="{{ onMagMove }}" onMouseLeave="{{ onMagLeave }}" style="display:inline-block; font-family:'Caveat',cursive; font-size:26px; font-weight:700; color:#fdfdfa; border:2px solid #fdfdfa; border-radius:100px; padding:14px 28px; transition:transform 0.15s ease-out, background 0.2s ease, color 0.2s ease;" style-hover="background:#ddff33; color:#0a0a0a; border-color:#ddff33;">hi@rahulohariya.com</a>
-        <div style="display:flex; gap:12px; flex-wrap:wrap;">
-          <a href="https://www.linkedin.com/in/rahulohariya/" target="_blank" onMouseMove="{{ onMagMove }}" onMouseLeave="{{ onMagLeave }}" style="display:inline-block; color:#fdfdfa; font-size:13px; font-weight:700; border:1.5px solid rgba(253,253,250,0.35); border-radius:100px; padding:10px 20px; transition:transform 0.15s ease-out, border-color 0.2s ease;" style-hover="border-color:#fdfdfa;">LinkedIn ↗</a>
-          <a href="https://notion.rahulohariya.com" target="_blank" onMouseMove="{{ onMagMove }}" onMouseLeave="{{ onMagLeave }}" style="display:inline-block; color:#fdfdfa; font-size:13px; font-weight:700; border:1.5px solid rgba(253,253,250,0.35); border-radius:100px; padding:10px 20px; transition:transform 0.15s ease-out, border-color 0.2s ease;" style-hover="border-color:#fdfdfa;">Notion ↗</a>
-        </div>
-      </div>
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; padding-top:24px;">
-        <span style="font-size:13px; color:rgba(253,253,250,0.4);">© 2026 Rahul Ohariya</span>
-        <nav style="display:flex; gap:28px;">
-          <a href="/" style="color:rgba(253,253,250,0.55); font-size:13px; font-weight:600;">Home</a>
-          <a href="/projects" style="color:rgba(253,253,250,0.55); font-size:13px; font-weight:600;">Projects</a>
-          <a href="/about" style="color:#fdfdfa; font-size:13px; font-weight:600;">About</a>
-        </nav>
-      </div>
-    </div>
-  </footer>
-
-  <div ref="{{ cursorRef }}" style="position:fixed; top:0; left:0; width:24px; height:24px; border-radius:50%; background:#ddff33; mix-blend-mode:difference; pointer-events:none; z-index:9999; transform:translate(-999px,-999px); transition:width 0.2s ease, height 0.2s ease;"></div>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="scroll-progress" aria-hidden="true"></div>
+<div class="blobs" aria-hidden="true">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
 </div>
 
-</x-dc>
-<script type="text/x-dc" data-dc-script>
-class Component extends DCLogic {
-  state = { revealed: { services: false }, mobileMenuOpen: false, loading: true, loadProgress: 0, loaderOpacity: 1 };
-  toggleMobileMenu = () => this.setState((s) => ({ mobileMenuOpen: !s.mobileMenuOpen }));
-  servicesRef = React.createRef();
-  cursorRef = React.createRef();
-  matrixCanvasRef = React.createRef();
+<header class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <img src="images/logo.png" alt="" width="30" height="30">
+      Rahul O.
+    </a>
+    <nav aria-label="Main">
+      <ul class="nav-links">
+        <li><a href="/#work">Work</a></li>
+        <li><a href="/#services">Services</a></li>
+        <li><a href="/about" aria-current="page">About</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a class="nav-cta magnetic" href="mailto:rahulohariya7@gmail.com">Get in touch</a></li>
+      </ul>
+    </nav>
+    <button class="nav-burger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="mobile-menu">
+  <a href="/#work">Work</a>
+  <a href="/#services">Services</a>
+  <a href="/about">About</a>
+  <a href="/projects">Projects</a>
+  <a class="nav-cta" href="mailto:rahulohariya7@gmail.com">Get in touch</a>
+</div>
 
-  componentDidMount() {
-    this.startLoader();
-    this.observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          this.setState((s) => ({ revealed: { ...s.revealed, services: true } }));
-          this.observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
-    if (this.servicesRef.current) this.observer.observe(this.servicesRef.current);
+<main id="main">
 
-    this.cursorTarget = { x: -999, y: -999 };
-    this.cursorPos = { x: -999, y: -999 };
-    this.onDocMouseMove = (e) => { this.cursorTarget = { x: e.clientX, y: e.clientY }; };
-    this.onDocMouseOver = (e) => {
-      if (this.cursorRef.current && e.target.closest && e.target.closest('a, button')) {
-        this.cursorRef.current.style.width = '48px';
-        this.cursorRef.current.style.height = '48px';
-      }
-    };
-    this.onDocMouseOut = (e) => {
-      if (this.cursorRef.current && e.target.closest && e.target.closest('a, button')) {
-        this.cursorRef.current.style.width = '24px';
-        this.cursorRef.current.style.height = '24px';
-      }
-    };
-    document.addEventListener('mousemove', this.onDocMouseMove);
-    document.addEventListener('mouseover', this.onDocMouseOver);
-    document.addEventListener('mouseout', this.onDocMouseOut);
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-tag reveal">About</span>
+      <h1>
+        <span class="reveal-line"><span>Strategy first,</span></span>
+        <span class="reveal-line"><span>pixels second.</span></span>
+      </h1>
+      <p class="reveal">Web developer, UI/UX designer, and IIM Ranchi grad. I build websites that treat design as a business tool — not decoration.</p>
+    </div>
+  </section>
 
-    this.targetScroll = window.scrollY;
-    this.currentScroll = window.scrollY;
-    this.isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
-    this.onWheel = (e) => {
-      e.preventDefault();
-      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-      this.targetScroll = Math.max(0, Math.min(maxScroll, this.targetScroll + e.deltaY * 0.55));
-    };
-    if (!this.isTouchDevice) {
-      window.addEventListener('wheel', this.onWheel, { passive: false });
-    }
+  <section style="padding-top: 30px;">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-photo reveal">
+          <img src="images/portrait.png" alt="Portrait of Rahul Ohariya" loading="lazy">
+        </div>
+        <div class="about-copy">
+          <h2 class="section-title reveal">Hi, I'm Rahul.</h2>
+          <p class="reveal">I've shipped <strong>25+ projects</strong> across <strong>Webflow and WordPress</strong> — for local businesses, growing brands, and funded startups. Every one of them started the same way: understanding what the business actually needs the website to do.</p>
+          <p class="reveal">My background is a mix of design and management — a grad of <strong>IIM Ranchi</strong> — which means when we work together, you get someone who thinks about conversion, positioning, and SEO from the first wireframe, not as an afterthought.</p>
+          <p class="reveal">You get a site that's designed around your customers, built to load fast, and structured to rank. And you get it without managing three different freelancers — strategy, design, and build are all handled in one place.</p>
+          <div class="skill-tags reveal">
+            <span class="tag">Webflow</span><span class="tag">WordPress</span><span class="tag">Elementor</span>
+            <span class="tag">Figma</span><span class="tag">SEO</span><span class="tag">CRO</span>
+            <span class="tag">JavaScript</span><span class="tag">Shopify</span>
+          </div>
+          <div style="margin-top:34px; display:flex; gap:16px; flex-wrap:wrap;" class="reveal">
+            <a class="btn btn-primary magnetic" href="mailto:rahulohariya7@gmail.com">Work with me →</a>
+            <a class="btn btn-ghost magnetic" href="/resume.pdf">Resume</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    const tick = () => {
-      if (this.isTouchDevice) { this.targetScroll = this.currentScroll = window.scrollY; }
-      this.currentScroll += (this.targetScroll - this.currentScroll) * 0.09;
-      if (Math.abs(this.targetScroll - this.currentScroll) < 0.5) this.currentScroll = this.targetScroll;
-      window.scrollTo(0, this.currentScroll);
+  <section class="stats" aria-label="Credentials">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="reveal">
+          <div class="stat-value"><span data-count="25" data-suffix="+">0+</span></div>
+          <div class="stat-label">Projects shipped</div>
+        </div>
+        <div class="reveal" style="--d: 0.12s">
+          <div class="stat-value"><span data-count="8" data-suffix="">0</span></div>
+          <div class="stat-label">Featured case studies</div>
+        </div>
+        <div class="reveal" style="--d: 0.24s">
+          <div class="stat-value">IIM</div>
+          <div class="stat-label">IIM Ranchi</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      this.cursorPos.x += (this.cursorTarget.x - this.cursorPos.x) * 0.18;
-      this.cursorPos.y += (this.cursorTarget.y - this.cursorPos.y) * 0.18;
-      if (this.cursorRef.current) {
-        const size = parseFloat(this.cursorRef.current.style.width) || 24;
-        this.cursorRef.current.style.transform = `translate(${this.cursorPos.x - size / 2}px, ${this.cursorPos.y - size / 2}px)`;
-      }
-      this.rafId = requestAnimationFrame(tick);
-    };
-    tick();
-  }
+  <section class="cta">
+    <div class="container">
+      <h2 class="reveal">Ready to start your<br>next project?</h2>
+      <p class="reveal">Tell me what you're building — I'll reply within a day.</p>
+      <a class="btn btn-primary magnetic reveal" href="mailto:rahulohariya7@gmail.com">rahulohariya7@gmail.com</a>
+    </div>
+  </section>
+</main>
 
-  componentWillUnmount() {
-    if (this.observer) this.observer.disconnect();
-    if (this.rafId) cancelAnimationFrame(this.rafId);
-    document.removeEventListener('mousemove', this.onDocMouseMove);
-    document.removeEventListener('mouseover', this.onDocMouseOver);
-    document.removeEventListener('mouseout', this.onDocMouseOut);
-    if (this.onWheel) window.removeEventListener('wheel', this.onWheel);
-  }
+<footer class="footer on-dark">
+  <div class="container footer-inner">
+    <span style="font-family:'Space Grotesk',sans-serif; font-weight:700;">Rahul O.</span>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/rahulohariya" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="mailto:rahulohariya7@gmail.com">Email</a>
+      <a href="/resume.pdf">Resume</a>
+    </div>
+    <span class="footer-copy">© <span id="year">2026</span> Rahul Ohariya</span>
+  </div>
+</footer>
 
-  onMagMove = (e) => {
-    const el = e.currentTarget;
-    const rect = el.getBoundingClientRect();
-    const x = (e.clientX - rect.left - rect.width / 2) * 0.3;
-    const y = (e.clientY - rect.top - rect.height / 2) * 0.3;
-    el.style.transform = `translate(${x}px, ${y}px)`;
-  };
-
-  onMagLeave = (e) => {
-    e.currentTarget.style.transform = 'translate(0,0)';
-  };
-
-  startLoader = () => {
-    const canvas = this.matrixCanvasRef.current;
-    let ctx, cols, drops, charW = 16;
-    const chars = 'アイウエオカキクケコサシスセソタチツテト0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    const resize = () => {
-      if (!canvas) return;
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      cols = Math.floor(canvas.width / charW);
-      drops = Array.from({ length: cols }, () => Math.floor(Math.random() * -40));
-    };
-    if (canvas) {
-      ctx = canvas.getContext('2d');
-      resize();
-      window.addEventListener('resize', resize);
-      this.matrixResizeHandler = resize;
-    }
-    this.matrixInterval = setInterval(() => {
-      if (!ctx) return;
-      ctx.fillStyle = 'rgba(10,10,10,0.18)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = '#5fff6e';
-      ctx.font = charW + 'px monospace';
-      for (let i = 0; i < drops.length; i++) {
-        const ch = chars[Math.floor(Math.random() * chars.length)];
-        ctx.fillText(ch, i * charW, drops[i] * charW);
-        if (drops[i] * charW > canvas.height && Math.random() > 0.975) drops[i] = 0;
-        drops[i]++;
-      }
-    }, 45);
-
-    this.progressTarget = 8;
-    this.progressInterval = setInterval(() => {
-      this.progressTarget = Math.min(this.progressTarget + Math.random() * 6, 92);
-      this.setState(s => ({ loadProgress: Math.max(s.loadProgress, this.progressTarget) }));
-    }, 180);
-
-    const finish = () => {
-      if (this.finished) return;
-      this.finished = true;
-      this.setState({ loadProgress: 100 });
-      clearInterval(this.progressInterval);
-      setTimeout(() => {
-        this.setState({ loaderOpacity: 0 });
-        setTimeout(() => {
-          this.setState({ loading: false });
-          clearInterval(this.matrixInterval);
-          if (this.matrixResizeHandler) window.removeEventListener('resize', this.matrixResizeHandler);
-        }, 520);
-      }, 260);
-    };
-    const ready = () => Promise.all([
-      document.fonts ? document.fonts.ready : Promise.resolve(),
-      new Promise(res => { if (document.readyState === 'complete') res(); else window.addEventListener('load', res, { once: true }); }),
-    ]);
-    ready().then(() => setTimeout(finish, 700));
-    setTimeout(finish, 4000);
-  };
-
-  renderVals() {
-    const r = this.state.revealed;
-    const icon = (d) => ({ __html: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">${d}</svg>` });
-    return {
-      servicesRef: this.servicesRef, cursorRef: this.cursorRef,
-      mobileMenuOpen: this.state.mobileMenuOpen,
-      mobileMenuClosed: !this.state.mobileMenuOpen,
-      toggleMobileMenu: this.toggleMobileMenu,
-      loading: this.state.loading, loadProgress: Math.round(this.state.loadProgress),
-      loadProgressLabel: Math.round(this.state.loadProgress), loaderOpacity: this.state.loaderOpacity,
-      matrixCanvasRef: this.matrixCanvasRef,
-      servicesOpacity: r.services ? '1' : '0',
-      servicesTransform: r.services ? 'translateY(0)' : 'translateY(28px)',
-      onMagMove: this.onMagMove, onMagLeave: this.onMagLeave,
-      timeline: [
-        { year: '2020–22', text: 'Content Creator at Adiveer Production — produced music videos and digital content.' },
-        { year: '2022–24', text: 'IIM Ranchi, Media & Branding Cell — ran live streams and media outreach for national conferences.' },
-        { year: '2024–25', text: 'Intern at PixySquare — Webflow, WordPress & Figma for marketing initiatives.' },
-        { year: 'Now', text: 'Freelance web developer & consultant, building fast sites for startups.' },
-      ],
-      services: [
-        { title: 'Website Design & Development', desc: 'End-to-end builds from wireframe to launch.', svg: icon('<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/>') },
-        { title: 'Webflow Development', desc: 'CMS-driven, animation-ready production sites.', svg: icon('<path d="m3 8 9 6 9-6"/><rect x="3" y="4" width="18" height="16" rx="2"/>') },
-        { title: 'WordPress Development', desc: 'Custom themes built for speed and scale.', svg: icon('<circle cx="12" cy="12" r="9"/><path d="M8 9l1.5 6M16 9l-1.5 6M12 6v12"/>') },
-        { title: 'Figma to Webflow/WordPress', desc: 'Pixel-accurate handoff from design to code.', svg: icon('<path d="M9 2h4a3 3 0 0 1 0 6H9z"/><path d="M9 8h4a3 3 0 0 1 0 6H9z"/><path d="M9 14h3a3 3 0 0 1 0 6 3 3 0 0 1-3-3z"/>') },
-        { title: 'Search Engine Optimization', desc: 'Structured tags & metadata that surface in search.', svg: icon('<circle cx="10" cy="10" r="6"/><path d="m21 21-5.5-5.5"/>') },
-        { title: 'CMS Setup & Architecture', desc: 'Content models built to scale without breaking.', svg: icon('<ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/>') },
-      ],
-      marqueeTools: (() => {
-        const base = [
-          { name: 'Webflow', svg: { __html: '<svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><path d="m24 4.515-7.658 14.97H9.149l3.205-6.204h-.144C9.566 16.713 5.621 18.973 0 19.485v-6.118s3.596-.213 5.71-2.435H0V4.515h6.417v5.278l.144-.001 2.622-5.277h4.854v5.244h.144l2.72-5.244H24Z"/></svg>' } },
-          { name: 'Figma', svg: { __html: '<svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><path d="M15.852 8.981h-4.588V0h4.588c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.491-4.49 4.491zM12.735 7.51h3.117c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-3.117V7.51zm0 1.471H8.148c-2.476 0-4.49-2.014-4.49-4.49S5.672 0 8.148 0h4.588v8.981zm-4.587-7.51c-1.665 0-3.019 1.355-3.019 3.019s1.354 3.02 3.019 3.02h3.117V1.471H8.148zm4.587 15.019H8.148c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h4.588v8.98zM8.148 8.981c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h3.117V8.981H8.148zM8.172 24c-2.489 0-4.515-2.014-4.515-4.49s2.014-4.49 4.49-4.49h4.588v4.441c0 2.503-2.047 4.539-4.563 4.539zm-.024-7.51a3.023 3.023 0 0 0-3.019 3.019c0 1.665 1.365 3.019 3.044 3.019 1.705 0 3.093-1.376 3.093-3.068v-2.97H8.148zm7.704 0h-.098c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h.098c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.49-4.49 4.49zm-.097-7.509c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h.098c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-.098z"/></svg>' } },
-          { name: 'WordPress', svg: { __html: '<svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><path d="M21.469 6.825c.84 1.537 1.318 3.3 1.318 5.175 0 3.979-2.156 7.456-5.363 9.325l3.295-9.527c.615-1.54.82-2.771.82-3.864 0-.405-.026-.78-.07-1.11m-7.981.105c.647-.03 1.232-.105 1.232-.105.582-.075.514-.93-.067-.899 0 0-1.755.135-2.88.135-1.064 0-2.85-.15-2.85-.15-.585-.03-.661.855-.075.885 0 0 .54.061 1.125.09l1.68 4.605-2.37 7.08L5.354 6.9c.649-.03 1.234-.1 1.234-.1.585-.075.516-.93-.065-.896 0 0-1.746.138-2.874.138-.2 0-.438-.008-.69-.015C4.911 3.15 8.235 1.215 12 1.215c2.809 0 5.365 1.072 7.286 2.833-.046-.003-.091-.009-.141-.009-1.06 0-1.812.923-1.812 1.914 0 .89.513 1.643 1.06 2.531.411.72.89 1.643.89 2.977 0 .915-.354 1.994-.821 3.479l-1.075 3.585-3.9-11.61.001.014zM12 22.784c-1.059 0-2.081-.153-3.048-.437l3.237-9.406 3.315 9.087c.024.053.05.101.078.149-1.12.393-2.325.609-3.582.609M1.211 12c0-1.564.336-3.05.935-4.39L7.29 21.709C3.694 19.96 1.212 16.271 1.211 12M12 0C5.385 0 0 5.385 0 12s5.385 12 12 12 12-5.385 12-12S18.615 0 12 0"/></svg>' } },
-          { name: 'Elementor', svg: { __html: '<svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><path d="M12 0C5.372 0 0 5.372 0 12c0 6.626 5.372 12 12 12s12-5.372 12-12c0-6.626-5.372-12-12-12ZM9 17H7V7H9Zm8 0H11V15h6Zm0-4H11V11h6Zm0-4H11V7h6Z"/></svg>' } },
-          { name: 'Notion', svg: { __html: '<svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><path d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.046-.326L17.86 1.968c-.42-.326-.981-.7-2.055-.607L3.01 2.295c-.466.046-.56.28-.374.466zm.793 3.08v13.904c0 .747.373 1.027 1.214.98l14.523-.84c.841-.046.935-.56.935-1.167V6.354c0-.606-.233-.933-.748-.887l-15.177.887c-.56.047-.747.327-.747.933zm14.337.745c.093.42 0 .84-.42.888l-.7.14v10.264c-.608.327-1.168.514-1.635.514-.748 0-.935-.234-1.495-.933l-4.577-7.186v6.952L12.21 19s0 .84-1.168.84l-3.222.186c-.093-.186 0-.653.327-.746l.84-.233V9.854L7.822 9.76c-.094-.42.14-1.026.793-1.073l3.456-.233 4.764 7.279v-6.44l-1.215-.139c-.093-.514.28-.887.747-.933zM1.936 1.035l13.31-.98c1.634-.14 2.055-.047 3.082.7l4.249 2.986c.7.513.934.653.934 1.213v16.378c0 1.026-.373 1.634-1.68 1.726l-15.458.934c-.98.047-1.448-.093-1.962-.747l-3.129-4.06c-.56-.747-.793-1.306-.793-1.96V2.667c0-.839.374-1.54 1.447-1.632z"/></svg>' } },
-          { name: 'Shopify', svg: { __html: '<svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><path d="M15.337 23.979l7.216-1.561s-2.604-17.613-2.625-17.73c-.018-.116-.114-.192-.211-.192s-1.929-.136-1.929-.136-1.275-1.274-1.439-1.411c-.045-.037-.075-.057-.121-.074l-.914 21.104h.023zM11.71 11.305s-.81-.424-1.774-.424c-1.447 0-1.504.906-1.504 1.141 0 1.232 3.24 1.715 3.24 4.629 0 2.295-1.44 3.76-3.406 3.76-2.354 0-3.54-1.465-3.54-1.465l.646-2.086s1.245 1.066 2.28 1.066c.675 0 .975-.545.975-.932 0-1.619-2.654-1.694-2.654-4.359-.034-2.237 1.571-4.416 4.827-4.416 1.257 0 1.875.361 1.875.361l-.945 2.715-.02.01zM11.17.83c.136 0 .271.038.405.135-.984.465-2.064 1.639-2.508 3.992-.656.213-1.293.405-1.889.578C7.697 3.75 8.951.84 11.17.84V.83zm1.235 2.949v.135c-.754.232-1.583.484-2.394.736.466-1.777 1.333-2.645 2.085-2.971.193.501.309 1.176.309 2.1zm.539-2.234c.694.074 1.141.867 1.429 1.755-.349.114-.735.231-1.158.366v-.252c0-.752-.096-1.371-.271-1.871v.002zm2.992 1.289c-.02 0-.06.021-.078.021s-.289.075-.714.21c-.423-1.233-1.176-2.37-2.508-2.37h-.115C12.135.209 11.669 0 11.265 0 8.159 0 6.675 3.877 6.21 5.846c-1.194.365-2.063.636-2.16.674-.675.213-.694.232-.772.87-.075.462-1.83 14.063-1.83 14.063L15.009 24l.927-21.166z"/></svg>' } },
-          { name: 'Framer', svg: { __html: '<svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><path d="M4 0h16v8h-8zM4 8h8l8 8H4zM4 16h8v8z"/></svg>' } },
-          { name: 'Relume', svg: { __html: '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect x="2" y="2" width="9" height="9" rx="1.5" fill="currentColor"/><rect x="13" y="2" width="9" height="9" rx="1.5" fill="currentColor" opacity="0.45"/><rect x="2" y="13" width="9" height="9" rx="1.5" fill="currentColor" opacity="0.45"/><rect x="13" y="13" width="9" height="9" rx="1.5" fill="currentColor"/></svg>' } },
-        ];
-        return [...base, ...base];
-      })(),
-    };
-  }
-}
-
-</script>
+<script src="js/main.js" defer></script>
 </body>
 </html>
