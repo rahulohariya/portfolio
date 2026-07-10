@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IELTS Writing Mock Test</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+  :root{
+    --ink:#1b2431;
+    --ink-soft:#3a4557;
+    --paper:#faf9f4;
+    --paper-line:#e4e0d4;
+    --rule:#c9c3ae;
+    --brass:#a9822f;
+    --brass-dark:#7c5f22;
+    --ok:#3f6b4f;
+    --warn:#b8791f;
+    --danger:#a33d2f;
+    --panel:#ffffff;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      linear-gradient(180deg, #10161f 0%, #161f2c 100%);
+    font-family:'Inter',sans-serif;
+    color:var(--ink);
+    min-height:100vh;
+  }
+
+  /* ---------- Top exam bar ---------- */
+  .examhall{
+    background:var(--ink);
+    color:#e9e4d4;
+    padding:14px 28px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:14px;
+    border-bottom:3px solid var(--brass);
+  }
+  .examhall .brand{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+  }
+  .examhall .brand .mark{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    letter-spacing:.18em;
+    color:var(--brass);
+    border:1px solid var(--brass-dark);
+    padding:3px 7px;
+    border-radius:2px;
+  }
+  .examhall .brand h1{
+    font-family:'Source Serif 4',serif;
+    font-weight:600;
+    font-size:20px;
+    margin:0;
+    letter-spacing:.01em;
+  }
+  .examhall .candidate{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    color:#9aa3b5;
+  }
+
+  .timer-block{
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .clock{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:34px;
+    font-weight:600;
+    letter-spacing:.03em;
+    color:#e9e4d4;
+    min-width:118px;
+    text-align:center;
+    transition:color .3s;
+  }
+  .clock.warn{color:var(--warn);}
+  .clock.danger{color:var(--danger); animation:pulse 1s infinite;}
+  @keyframes pulse{ 0%,100%{opacity:1;} 50%{opacity:.45;} }
+
+  .clock-label{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10px;
+    letter-spacing:.14em;
+    color:#7b8497;
+    text-transform:uppercase;
+    text-align:center;
+  }
+
+  .timer-controls{display:flex; gap:8px;}
+  .btn{
+    font-family:'Inter',sans-serif;
+    font-size:12.5px;
+    font-weight:600;
+    letter-spacing:.02em;
+    padding:9px 16px;
+    border-radius:3px;
+    border:1px solid var(--brass-dark);
+    background:transparent;
+    color:#e9e4d4;
+    cursor:pointer;
+    transition:background .15s, color .15s;
+  }
+  .btn:hover{background:var(--brass); color:#161f2c; border-color:var(--brass);}
+  .btn.primary{background:var(--brass); color:#161f2c;}
+  .btn.primary:hover{background:#c69a3d;}
+  .btn:disabled{opacity:.35; cursor:not-allowed;}
+  .btn:disabled:hover{background:transparent; color:#e9e4d4; border-color:var(--brass-dark);}
+
+  /* ---------- Tabs ---------- */
+  .tabbar{
+    display:flex;
+    background:#0e131b;
+    padding:0 28px;
+    gap:2px;
+  }
+  .tab{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    letter-spacing:.08em;
+    color:#7b8497;
+    background:transparent;
+    border:none;
+    padding:12px 20px;
+    cursor:pointer;
+    border-bottom:3px solid transparent;
+    text-transform:uppercase;
+  }
+  .tab.active{color:#e9e4d4; border-bottom-color:var(--brass);}
+  .tab .req{
+    display:block;
+    font-family:'Inter',sans-serif;
+    text-transform:none;
+    letter-spacing:0;
+    font-size:10.5px;
+    color:#4c5567;
+    margin-top:2px;
+  }
+
+  /* ---------- Main layout ---------- */
+  .stage{
+    max-width:none;
+    margin:24px 0 60px;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:22px;
+  }
+  @media(max-width:900px){ .stage{grid-template-columns:1fr;} }
+
+  .panel{
+    background:var(--panel);
+    border:1px solid var(--paper-line);
+    border-radius:4px;
+    box-shadow:0 12px 30px -18px rgba(0,0,0,.5);
+    overflow:hidden;
+  }
+  .panel-head{
+    padding:14px 20px;
+    border-bottom:1px solid var(--paper-line);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:var(--paper);
+  }
+  .panel-head h2{
+    font-family:'Source Serif 4',serif;
+    font-size:15px;
+    font-weight:600;
+    margin:0;
+    color:var(--ink);
+  }
+  .panel-head .tag{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10px;
+    letter-spacing:.1em;
+    color:var(--brass-dark);
+    text-transform:uppercase;
+  }
+
+  .question-area{
+    padding:20px;
+  }
+  .question-text{
+    font-family:'Source Serif 4',serif;
+    font-size:15.5px;
+    line-height:1.65;
+    color:var(--ink-soft);
+    width:100%;
+    min-height:160px;
+    border:1px dashed var(--rule);
+    background:#fdfcf8;
+    padding:12px 14px;
+    border-radius:3px;
+    resize:vertical;
+  }
+  .question-text:focus{outline:none; border-color:var(--brass);}
+
+  /* image drop zone for Task 1 */
+  .img-zone{
+    margin-top:14px;
+    border:2px dashed var(--rule);
+    border-radius:4px;
+    background:#fdfcf8;
+    min-height:220px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    gap:8px;
+    cursor:pointer;
+    position:relative;
+    padding:16px;
+    text-align:center;
+  }
+  .img-zone.drag{border-color:var(--brass); background:#fbf3e2;}
+  .img-zone img{max-width:100%; max-height:340px; border-radius:3px; display:block;}
+  .img-zone .hint{
+    font-family:'Inter',sans-serif;
+    font-size:12.5px;
+    color:#8a8467;
+  }
+  .img-zone .hint b{color:var(--brass-dark);}
+  .img-zone input{display:none;}
+  .img-remove{
+    position:absolute; top:8px; right:8px;
+    background:var(--ink); color:#fff;
+    border:none; border-radius:3px;
+    font-size:11px; padding:5px 9px; cursor:pointer;
+    font-family:'Inter',sans-serif;
+  }
+
+  .answer-area{padding:0 20px 20px;}
+  textarea.answer{
+    width:100%;
+    min-height:420px;
+    border:1px solid var(--paper-line);
+    border-radius:3px;
+    padding:16px 18px;
+    font-family:'Source Serif 4',serif;
+    font-size:15.5px;
+    line-height:1.75;
+    color:var(--ink);
+    resize:vertical;
+    background:
+      repeating-linear-gradient(
+        var(--panel),
+        var(--panel) 34px,
+        #eee9db 35px
+      );
+  }
+  textarea.answer:focus{outline:none; border-color:var(--brass);}
+
+  .wordbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:12px 20px 18px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    color:#8a8467;
+  }
+  .wordcount{font-weight:600;}
+  .wordcount.ok{color:var(--ok);}
+  .wordcount.low{color:var(--danger);}
+
+  .status-strip{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    padding:8px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    color:#6b7280;
+    background:#0e131b;
+    text-transform:uppercase;
+  }
+  .status-strip .dot{
+    width:7px; height:7px; border-radius:50%;
+    background:#4c5567;
+  }
+  .status-strip.running .dot{background:var(--ok); box-shadow:0 0 0 3px rgba(63,107,79,.25);}
+</style>
+</head>
+<body>
+
+  <div class="examhall">
+    <div class="brand">
+      <span class="mark">IELTS</span>
+      <h1>Academic Writing — Mock Test</h1>
+    </div>
+
+    <div class="timer-block">
+      <div>
+        <div class="clock-label">Total time</div>
+        <div class="clock" id="clockDisplay">60:00</div>
+      </div>
+      <div class="timer-controls">
+        <button class="btn primary" id="startBtn">Start</button>
+        <button class="btn" id="pauseBtn" disabled>Pause</button>
+        <button class="btn" id="resetBtn">Reset</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="status-strip" id="statusStrip"><span class="dot"></span><span id="statusText">Not started — 60:00 minutes on the clock once you press Start</span></div>
+
+  <div class="tabbar">
+    <button class="tab active" id="tabBtn1" onclick="switchTask(1)">
+      Task 1
+      <span class="req">Report · 20 min · 150 words min</span>
+    </button>
+    <button class="tab" id="tabBtn2" onclick="switchTask(2)">
+      Task 2
+      <span class="req">Essay · 40 min · 250 words min</span>
+    </button>
+  </div>
+
+  <!-- TASK 1 -->
+  <div class="stage" id="task1View">
+    <div class="panel">
+      <div class="panel-head">
+        <h2>Task 1 — Question</h2>
+        <span class="tag">Report writing</span>
+      </div>
+      <div class="question-area">
+        <textarea class="question-text" id="q1text">The chart below shows [describe the data — e.g. the percentage of households with internet access in three countries between 2005 and 2020]. Summarise the information by selecting and reporting the main features, and make comparisons where relevant.
+
+Write at least 150 words.</textarea>
+
+        <div class="img-zone" id="dropZone">
+          <input type="file" id="imgInput" accept="image/*">
+          <div id="imgPlaceholder">
+            <div style="font-size:26px;">📊</div>
+            <div class="hint"><b>Click to upload</b> or drag an image here<br>Paste your chart, graph, table, diagram or map</div>
+          </div>
+          <button class="img-remove" id="imgRemoveBtn" style="display:none;">Remove</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head">
+        <h2>Your Response</h2>
+        <span class="tag">Task 1</span>
+      </div>
+      <div class="answer-area">
+        <textarea class="answer" id="answer1" placeholder="Begin your Task 1 response here..."></textarea>
+      </div>
+      <div class="wordbar">
+        <span>Target: 150+ words</span>
+        <span class="wordcount low" id="wordcount1">0 words</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TASK 2 -->
+  <div class="stage" id="task2View" style="display:none;">
+    <div class="panel">
+      <div class="panel-head">
+        <h2>Task 2 — Question</h2>
+        <span class="tag">Essay writing</span>
+      </div>
+      <div class="question-area">
+        <textarea class="question-text" id="q2text" style="min-height:180px;">Some people believe that unpaid community service should be a compulsory part of high school programmes. Others believe students should be free to choose how they spend their time outside school.
+
+Discuss both these views and give your own opinion.
+
+Write at least 250 words.</textarea>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head">
+        <h2>Your Response</h2>
+        <span class="tag">Task 2</span>
+      </div>
+      <div class="answer-area">
+        <textarea class="answer" id="answer2" placeholder="Begin your Task 2 response here..." style="min-height:520px;"></textarea>
+      </div>
+      <div class="wordbar">
+        <span>Target: 250+ words</span>
+        <span class="wordcount low" id="wordcount2">0 words</span>
+      </div>
+    </div>
+  </div>
+
+<script>
+  // ---------- Timer ----------
+  const TOTAL_SECONDS = 60 * 60;
+  let secondsLeft = TOTAL_SECONDS;
+  let timerInterval = null;
+  let running = false;
+
+  const clockDisplay = document.getElementById('clockDisplay');
+  const startBtn = document.getElementById('startBtn');
+  const pauseBtn = document.getElementById('pauseBtn');
+  const resetBtn = document.getElementById('resetBtn');
+  const statusStrip = document.getElementById('statusStrip');
+  const statusText = document.getElementById('statusText');
+
+  function formatTime(s){
+    const m = Math.floor(s/60).toString().padStart(2,'0');
+    const sec = (s%60).toString().padStart(2,'0');
+    return m + ':' + sec;
+  }
+
+  function renderClock(){
+    clockDisplay.textContent = formatTime(secondsLeft);
+    clockDisplay.classList.remove('warn','danger');
+    if(secondsLeft <= 300) clockDisplay.classList.add('danger');
+    else if(secondsLeft <= 600) clockDisplay.classList.add('warn');
+  }
+
+  function tick(){
+    if(secondsLeft <= 0){
+      clearInterval(timerInterval);
+      running = false;
+      statusText.textContent = "Time is up — put your pens down";
+      statusStrip.classList.remove('running');
+      startBtn.disabled = true;
+      pauseBtn.disabled = true;
+      return;
+    }
+    secondsLeft--;
+    renderClock();
+    if(secondsLeft === 600) statusText.textContent = "10 minutes remaining";
+    if(secondsLeft === 300) statusText.textContent = "5 minutes remaining — start wrapping up";
+  }
+
+  startBtn.addEventListener('click', () => {
+    if(running) return;
+    running = true;
+    startBtn.disabled = true;
+    pauseBtn.disabled = false;
+    statusStrip.classList.add('running');
+    statusText.textContent = "Exam in progress";
+    timerInterval = setInterval(tick, 1000);
+  });
+
+  pauseBtn.addEventListener('click', () => {
+    running = false;
+    clearInterval(timerInterval);
+    startBtn.disabled = false;
+    pauseBtn.disabled = true;
+    statusStrip.classList.remove('running');
+    statusText.textContent = "Paused — press Start to resume";
+  });
+
+  resetBtn.addEventListener('click', () => {
+    running = false;
+    clearInterval(timerInterval);
+    secondsLeft = TOTAL_SECONDS;
+    renderClock();
+    startBtn.disabled = false;
+    pauseBtn.disabled = true;
+    statusStrip.classList.remove('running');
+    statusText.textContent = "Not started — 60:00 minutes on the clock once you press Start";
+  });
+
+  renderClock();
+
+  // ---------- Tabs ----------
+  function switchTask(n){
+    document.getElementById('task1View').style.display = n===1 ? 'grid' : 'none';
+    document.getElementById('task2View').style.display = n===2 ? 'grid' : 'none';
+    document.getElementById('tabBtn1').classList.toggle('active', n===1);
+    document.getElementById('tabBtn2').classList.toggle('active', n===2);
+  }
+
+  // ---------- Word counters ----------
+  function countWords(str){
+    const trimmed = str.trim();
+    if(!trimmed) return 0;
+    return trimmed.split(/\s+/).length;
+  }
+
+  function bindCounter(textareaId, counterId, minWords){
+    const ta = document.getElementById(textareaId);
+    const counter = document.getElementById(counterId);
+    ta.addEventListener('input', () => {
+      const n = countWords(ta.value);
+      counter.textContent = n + ' words';
+      counter.classList.toggle('ok', n >= minWords);
+      counter.classList.toggle('low', n < minWords);
+    });
+  }
+  bindCounter('answer1','wordcount1',150);
+  bindCounter('answer2','wordcount2',250);
+
+  // ---------- Task 1 image upload ----------
+  const dropZone = document.getElementById('dropZone');
+  const imgInput = document.getElementById('imgInput');
+  const imgPlaceholder = document.getElementById('imgPlaceholder');
+  const imgRemoveBtn = document.getElementById('imgRemoveBtn');
+  let previewImg = null;
+
+  function showImage(dataUrl){
+    imgPlaceholder.style.display = 'none';
+    if(!previewImg){
+      previewImg = document.createElement('img');
+      dropZone.insertBefore(previewImg, imgRemoveBtn);
+    }
+    previewImg.src = dataUrl;
+    imgRemoveBtn.style.display = 'block';
+  }
+
+  function clearImage(){
+    if(previewImg){ previewImg.remove(); previewImg = null; }
+    imgPlaceholder.style.display = 'flex';
+    imgRemoveBtn.style.display = 'none';
+    imgInput.value = '';
+  }
+
+  function handleFile(file){
+    if(!file || !file.type.startsWith('image/')) return;
+    const reader = new FileReader();
+    reader.onload = e => showImage(e.target.result);
+    reader.readAsDataURL(file);
+  }
+
+  dropZone.addEventListener('click', (e) => {
+    if(e.target === imgRemoveBtn) return;
+    imgInput.click();
+  });
+  imgInput.addEventListener('change', e => handleFile(e.target.files[0]));
+
+  ['dragenter','dragover'].forEach(evt => {
+    dropZone.addEventListener(evt, e => { e.preventDefault(); dropZone.classList.add('drag'); });
+  });
+  ['dragleave','drop'].forEach(evt => {
+    dropZone.addEventListener(evt, e => { e.preventDefault(); dropZone.classList.remove('drag'); });
+  });
+  dropZone.addEventListener('drop', e => {
+    handleFile(e.dataTransfer.files[0]);
+  });
+  imgRemoveBtn.addEventListener('click', e => { e.stopPropagation(); clearImage(); });
+</script>
+
+</body>
+</html>
