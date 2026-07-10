@@ -22,7 +22,7 @@
 <link rel="icon" type="image/png" href="images/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Solway:wght@400;700&family=Poppins:wght@400;500;600;700&family=Gaegu:wght@400;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -40,7 +40,7 @@
   <section class="projects-section pad-x">
     <div class="project-list">
 
-      <a id="mega-mulchers" href="https://megamulchers.com.au/" target="_blank" rel="noopener noreferrer" class="project-card project-card--full hd-border" style="--tilt:-0.6deg;">
+      <a id="mega-mulchers" href="https://megamulchers.com.au/" target="_blank" rel="noopener noreferrer" class="project-card project-card--full hd-border" style="--tilt:-0.6deg; --sticky-top:110px; --z:1;">
         <div class="project-img"><img src="images/mega-mulchers.png" alt="Mega Mulchers"><span class="project-badge">WORDPRESS</span></div>
         <div class="project-text">
           <div class="project-index">01 / 06</div>
@@ -51,7 +51,7 @@
         </div>
       </a>
 
-      <a id="crappy-presentations" href="https://www.crappypresentations.com/" target="_blank" rel="noopener noreferrer" class="project-card project-card--full hd-border" style="--tilt:0.6deg;">
+      <a id="crappy-presentations" href="https://www.crappypresentations.com/" target="_blank" rel="noopener noreferrer" class="project-card project-card--full hd-border" style="--tilt:0.6deg; --sticky-top:132px; --z:2;">
         <div class="project-img"><img src="images/crappy-presentations.png" alt="Crappy Presentations"><span class="project-badge">WEBFLOW</span></div>
         <div class="project-text">
           <div class="project-index">02 / 06</div>
@@ -62,7 +62,7 @@
         </div>
       </a>
 
-      <a id="house-of-calisthenics" href="https://www.houseofcalisthenics.com/live-coaching" target="_blank" rel="noopener noreferrer" class="project-card project-card--full hd-border" style="--tilt:-0.6deg;">
+      <a id="house-of-calisthenics" href="https://www.houseofcalisthenics.com/live-coaching" target="_blank" rel="noopener noreferrer" class="project-card project-card--full hd-border" style="--tilt:-0.6deg; --sticky-top:154px; --z:3;">
         <div class="project-img"><img src="images/house-of-calisthenics.png" alt="House of Calisthenics"><span class="project-badge">WEBFLOW</span></div>
         <div class="project-text">
           <div class="project-index">03 / 06</div>
@@ -73,7 +73,7 @@
         </div>
       </a>
 
-      <a id="united-enterprises" href="https://unitedenterprises.co.in/" target="_blank" rel="noopener noreferrer" class="project-card project-card--full hd-border" style="--tilt:0.6deg;">
+      <a id="united-enterprises" href="https://unitedenterprises.co.in/" target="_blank" rel="noopener noreferrer" class="project-card project-card--full hd-border" style="--tilt:0.6deg; --sticky-top:176px; --z:4;">
         <div class="project-img"><img src="images/united-enterprises.png" alt="United Enterprises"><span class="project-badge">WORDPRESS</span></div>
         <div class="project-text">
           <div class="project-index">04 / 06</div>
@@ -84,7 +84,7 @@
         </div>
       </a>
 
-      <a id="queens-quinoa" href="https://queensquinoa.com/" target="_blank" rel="noopener noreferrer" class="project-card project-card--full hd-border" style="--tilt:-0.6deg;">
+      <a id="queens-quinoa" href="https://queensquinoa.com/" target="_blank" rel="noopener noreferrer" class="project-card project-card--full hd-border" style="--tilt:-0.6deg; --sticky-top:198px; --z:5;">
         <div class="project-img"><img src="images/queens-quinoa.jpg" alt="Queens Quinoa"><span class="project-badge">WORDPRESS</span></div>
         <div class="project-text">
           <div class="project-index">05 / 06</div>
@@ -95,7 +95,7 @@
         </div>
       </a>
 
-      <a id="avasa" href="https://avaasa.us/" target="_blank" rel="noopener noreferrer" class="project-card project-card--full hd-border" style="--tilt:0.6deg;">
+      <a id="avasa" href="https://avaasa.us/" target="_blank" rel="noopener noreferrer" class="project-card project-card--full hd-border" style="--tilt:0.6deg; --sticky-top:220px; --z:6;">
         <div class="project-img"><img src="images/avasa.png" alt="Avasa"><span class="project-badge">WEBFLOW</span></div>
         <div class="project-text">
           <div class="project-index">06 / 06</div>
@@ -118,6 +118,33 @@
   </footer>
 
 </main>
+
+<!-- HAMBURGER (mobile) -->
+<nav class="hamburger-nav">
+  <button class="hamburger-btn" aria-label="Menu" aria-expanded="false">
+    <svg class="icon-menu" width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M4 7H20M4 12H20M4 17H20" stroke="#111" stroke-width="2.2" stroke-linecap="round"></path></svg>
+    <svg class="icon-close" width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M5 5L19 19M19 5L5 19" stroke="#111" stroke-width="2.2" stroke-linecap="round"></path></svg>
+  </button>
+  <div class="menu-backdrop"></div>
+  <div class="menu-panel">
+    <a href="/" class="menu-row">
+      <span class="menu-label">Home</span>
+      <span class="menu-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 11.5L12 4L20 11.5" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M6 10V20H18V10" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+    </a>
+    <a href="/projects" class="menu-row active">
+      <span class="menu-label">Projects</span>
+      <span class="menu-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="7" width="18" height="13" rx="2" stroke="#111" stroke-width="2"></rect><path d="M8 7V5C8 3.9 8.9 3 10 3H14C15.1 3 16 3.9 16 5V7" stroke="#111" stroke-width="2"></path></svg></span>
+    </a>
+    <a href="/about" class="menu-row">
+      <span class="menu-label">About</span>
+      <span class="menu-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.5" stroke="#111" stroke-width="2"></circle><path d="M5 20C5 16.5 8 14 12 14C16 14 19 16.5 19 20" stroke="#111" stroke-width="2" stroke-linecap="round"></path></svg></span>
+    </a>
+    <a href="https://wa.me/+916261559267" target="_blank" rel="noopener noreferrer" class="menu-row">
+      <span class="menu-label">Contact</span>
+      <span class="menu-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="5.5" width="18" height="13" rx="2" stroke="#111" stroke-width="2"></rect><path d="M4 6.5l8 6.5 8-6.5" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+    </a>
+  </div>
+</nav>
 
 <!-- DOCK NAV -->
 <nav class="dock-nav">
