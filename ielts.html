@@ -1,554 +1,1247 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IELTS Writing Mock Test</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IELTS Writing Practice</title>
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:         #d6d9de;
+      --panel-bg:   #f0f2f5;
+      --white:      #ffffff;
+      --border:     #b0b5be;
+      --border-dark:#8a9099;
+      --text:       #1a1d22;
+      --text-muted: #5a6070;
+      --accent:     #1a3a6b;
+      --accent-lt:  #2856a8;
+      --tab-active: #1a3a6b;
+      --tab-inactive:#6a7585;
+      --warn:       #b85c00;
+      --danger:     #c0180f;
+      --green:      #1e6b2e;
+      --green-lt:   #d4edda;
+      --warn-lt:    #fff3cd;
+      --danger-lt:  #fde8e8;
+      --bar-fill:   #1a3a6b;
+      --bar-bg:     #cdd2d9;
+      --shadow:     0 1px 4px rgba(0,0,0,.18);
+      --radius:     3px;
+      --font:       'Segoe UI', Arial, sans-serif;
+    }
 
-  :root{
-    --ink:#1b2431;
-    --ink-soft:#3a4557;
-    --paper:#faf9f4;
-    --paper-line:#e4e0d4;
-    --rule:#c9c3ae;
-    --brass:#a9822f;
-    --brass-dark:#7c5f22;
-    --ok:#3f6b4f;
-    --warn:#b8791f;
-    --danger:#a33d2f;
-    --panel:#ffffff;
-  }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
 
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
-  body{
-    background:
-      linear-gradient(180deg, #10161f 0%, #161f2c 100%);
-    font-family:'Inter',sans-serif;
-    color:var(--ink);
-    min-height:100vh;
-  }
+    /* ── Top Bar ── */
+    #topbar {
+      background: var(--accent);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 18px;
+      height: 44px;
+      flex-shrink: 0;
+      box-shadow: 0 2px 6px rgba(0,0,0,.25);
+      z-index: 10;
+    }
+    #topbar .brand { font-size: 14px; font-weight: 700; letter-spacing: .04em; }
+    #topbar .brand span { opacity: .65; font-weight: 400; margin-left: 6px; font-size: 12px; }
+    #timer-block {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    #timer-display {
+      font-size: 20px;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: .06em;
+      color: #fff;
+      min-width: 68px;
+      text-align: center;
+      transition: color .3s;
+    }
+    #timer-display.warn  { color: #ffc107; }
+    #timer-display.danger{ color: #ff5c5c; animation: pulse 1s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.5} }
 
-  /* ---------- Top exam bar ---------- */
-  .examhall{
-    background:var(--ink);
-    color:#e9e4d4;
-    padding:14px 28px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    flex-wrap:wrap;
-    gap:14px;
-    border-bottom:3px solid var(--brass);
-  }
-  .examhall .brand{
-    display:flex;
-    align-items:baseline;
-    gap:10px;
-  }
-  .examhall .brand .mark{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:11px;
-    letter-spacing:.18em;
-    color:var(--brass);
-    border:1px solid var(--brass-dark);
-    padding:3px 7px;
-    border-radius:2px;
-  }
-  .examhall .brand h1{
-    font-family:'Source Serif 4',serif;
-    font-weight:600;
-    font-size:20px;
-    margin:0;
-    letter-spacing:.01em;
-  }
-  .examhall .candidate{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:12px;
-    color:#9aa3b5;
-  }
+    .timer-btn {
+      background: rgba(255,255,255,.18);
+      border: 1px solid rgba(255,255,255,.35);
+      color: #fff;
+      padding: 4px 12px;
+      border-radius: var(--radius);
+      font-size: 12px;
+      cursor: pointer;
+      font-family: var(--font);
+      transition: background .15s;
+    }
+    .timer-btn:hover { background: rgba(255,255,255,.3); }
+    .timer-btn.active { background: rgba(255,255,255,.3); }
 
-  .timer-block{
-    display:flex;
-    align-items:center;
-    gap:16px;
-  }
-  .clock{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:34px;
-    font-weight:600;
-    letter-spacing:.03em;
-    color:#e9e4d4;
-    min-width:118px;
-    text-align:center;
-    transition:color .3s;
-  }
-  .clock.warn{color:var(--warn);}
-  .clock.danger{color:var(--danger); animation:pulse 1s infinite;}
-  @keyframes pulse{ 0%,100%{opacity:1;} 50%{opacity:.45;} }
+    #topbar-right { display: flex; align-items: center; gap: 8px; }
+    #fullscreen-btn, #download-btn {
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.3);
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: var(--radius);
+      font-size: 12px;
+      cursor: pointer;
+      font-family: var(--font);
+    }
+    #fullscreen-btn:hover, #download-btn:hover { background: rgba(255,255,255,.28); }
 
-  .clock-label{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:10px;
-    letter-spacing:.14em;
-    color:#7b8497;
-    text-transform:uppercase;
-    text-align:center;
-  }
+    /* ── Task Tabs ── */
+    #task-tabs {
+      background: #e4e7ec;
+      display: flex;
+      align-items: stretch;
+      border-bottom: 2px solid var(--border-dark);
+      flex-shrink: 0;
+      padding: 0 14px;
+      gap: 2px;
+    }
+    .task-tab {
+      padding: 8px 22px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      color: var(--tab-inactive);
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      transition: color .15s, border-color .15s;
+      font-family: var(--font);
+    }
+    .task-tab:hover { color: var(--accent); }
+    .task-tab.active {
+      color: var(--tab-active);
+      border-bottom-color: var(--tab-active);
+      background: #f0f2f5;
+    }
+    .task-tab .badge {
+      display: inline-block;
+      background: var(--border);
+      color: var(--text-muted);
+      font-size: 10px;
+      padding: 1px 6px;
+      border-radius: 10px;
+      margin-left: 6px;
+      font-weight: 400;
+    }
+    .task-tab.active .badge { background: var(--accent); color: #fff; }
 
-  .timer-controls{display:flex; gap:8px;}
-  .btn{
-    font-family:'Inter',sans-serif;
-    font-size:12.5px;
-    font-weight:600;
-    letter-spacing:.02em;
-    padding:9px 16px;
-    border-radius:3px;
-    border:1px solid var(--brass-dark);
-    background:transparent;
-    color:#e9e4d4;
-    cursor:pointer;
-    transition:background .15s, color .15s;
-  }
-  .btn:hover{background:var(--brass); color:#161f2c; border-color:var(--brass);}
-  .btn.primary{background:var(--brass); color:#161f2c;}
-  .btn.primary:hover{background:#c69a3d;}
-  .btn:disabled{opacity:.35; cursor:not-allowed;}
-  .btn:disabled:hover{background:transparent; color:#e9e4d4; border-color:var(--brass-dark);}
+    /* ── Main Content ── */
+    #main {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+      gap: 0;
+    }
 
-  /* ---------- Tabs ---------- */
-  .tabbar{
-    display:flex;
-    background:#0e131b;
-    padding:0 28px;
-    gap:2px;
-  }
-  .tab{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:12px;
-    letter-spacing:.08em;
-    color:#7b8497;
-    background:transparent;
-    border:none;
-    padding:12px 20px;
-    cursor:pointer;
-    border-bottom:3px solid transparent;
-    text-transform:uppercase;
-  }
-  .tab.active{color:#e9e4d4; border-bottom-color:var(--brass);}
-  .tab .req{
-    display:block;
-    font-family:'Inter',sans-serif;
-    text-transform:none;
-    letter-spacing:0;
-    font-size:10.5px;
-    color:#4c5567;
-    margin-top:2px;
-  }
+    /* ── Left Panel ── */
+    #left-panel {
+      width: 44%;
+      min-width: 320px;
+      background: var(--panel-bg);
+      border-right: 2px solid var(--border-dark);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    #left-panel-header {
+      background: #dde1e8;
+      border-bottom: 1px solid var(--border);
+      padding: 8px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+    #left-panel-header .zoom-btns { display: flex; gap: 4px; }
+    .zoom-btn {
+      background: var(--white);
+      border: 1px solid var(--border);
+      color: var(--text);
+      width: 22px; height: 22px;
+      border-radius: var(--radius);
+      font-size: 14px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      line-height: 1;
+    }
+    .zoom-btn:hover { background: var(--border); }
+    #left-scroll {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px 16px 20px;
+    }
 
-  /* ---------- Main layout ---------- */
-  .stage{
-    max-width:none;
-    margin:24px 0 60px;
-    padding:0 28px;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:22px;
-  }
-  @media(max-width:900px){ .stage{grid-template-columns:1fr;} }
+    /* Task 1 Layout */
+    #t1-instructions {
+      font-size: 13.5px;
+      line-height: 1.65;
+      color: var(--text);
+      margin-bottom: 14px;
+    }
+    #t1-instructions strong { font-weight: 700; }
+    #t1-instructions .task-meta {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+    #t1-prompt {
+      font-size: 13.5px;
+      line-height: 1.65;
+      color: var(--text);
+      margin-bottom: 14px;
+      padding: 10px 12px;
+      background: var(--white);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      font-weight: 600;
+    }
+    #t1-sub-prompt {
+      font-size: 13px;
+      color: var(--text);
+      margin-bottom: 14px;
+      line-height: 1.6;
+      font-weight: 600;
+    }
 
-  .panel{
-    background:var(--panel);
-    border:1px solid var(--paper-line);
-    border-radius:4px;
-    box-shadow:0 12px 30px -18px rgba(0,0,0,.5);
-    overflow:hidden;
-  }
-  .panel-head{
-    padding:14px 20px;
-    border-bottom:1px solid var(--paper-line);
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    background:var(--paper);
-  }
-  .panel-head h2{
-    font-family:'Source Serif 4',serif;
-    font-size:15px;
-    font-weight:600;
-    margin:0;
-    color:var(--ink);
-  }
-  .panel-head .tag{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:10px;
-    letter-spacing:.1em;
-    color:var(--brass-dark);
-    text-transform:uppercase;
-  }
+    /* Image area */
+    #image-container {
+      position: relative;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      min-height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #image-container img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      transition: transform .2s;
+    }
+    #upload-overlay {
+      position: absolute; inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      background: #f8f9fb;
+      border: 2px dashed var(--border-dark);
+      border-radius: var(--radius);
+      transition: background .15s;
+    }
+    #upload-overlay:hover { background: #eef0f4; }
+    #upload-overlay .upload-icon { font-size: 36px; color: var(--text-muted); margin-bottom: 8px; }
+    #upload-overlay p { font-size: 13px; color: var(--text-muted); text-align: center; line-height: 1.5; }
+    #upload-overlay .upload-hint { font-size: 11px; color: #8a9099; margin-top: 4px; }
+    #image-actions {
+      display: flex; gap: 6px; margin-top: 8px;
+    }
+    .img-action-btn {
+      font-size: 11px;
+      padding: 3px 10px;
+      border: 1px solid var(--border);
+      background: var(--white);
+      border-radius: var(--radius);
+      cursor: pointer;
+      color: var(--text-muted);
+      font-family: var(--font);
+    }
+    .img-action-btn:hover { background: var(--border); color: var(--text); }
+    #file-input { display: none; }
 
-  .question-area{
-    padding:20px;
-  }
-  .question-text{
-    font-family:'Source Serif 4',serif;
-    font-size:15.5px;
-    line-height:1.65;
-    color:var(--ink-soft);
-    width:100%;
-    min-height:160px;
-    border:1px dashed var(--rule);
-    background:#fdfcf8;
-    padding:12px 14px;
-    border-radius:3px;
-    resize:vertical;
-  }
-  .question-text:focus{outline:none; border-color:var(--brass);}
+    /* Task 2 Layout */
+    #t2-panel { display: block; }
+    #t2-instructions {
+      font-size: 13.5px;
+      line-height: 1.65;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
 
-  /* image drop zone for Task 1 */
-  .img-zone{
-    margin-top:14px;
-    border:2px dashed var(--rule);
-    border-radius:4px;
-    background:#fdfcf8;
-    min-height:220px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    flex-direction:column;
-    gap:8px;
-    cursor:pointer;
-    position:relative;
-    padding:16px;
-    text-align:center;
-  }
-  .img-zone.drag{border-color:var(--brass); background:#fbf3e2;}
-  .img-zone img{max-width:100%; max-height:340px; border-radius:3px; display:block;}
-  .img-zone .hint{
-    font-family:'Inter',sans-serif;
-    font-size:12.5px;
-    color:#8a8467;
-  }
-  .img-zone .hint b{color:var(--brass-dark);}
-  .img-zone input{display:none;}
-  .img-remove{
-    position:absolute; top:8px; right:8px;
-    background:var(--ink); color:#fff;
-    border:none; border-radius:3px;
-    font-size:11px; padding:5px 9px; cursor:pointer;
-    font-family:'Inter',sans-serif;
-  }
+    /* Question display box — always visible, shows formatted exam question */
+    #t2-display-box {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 13px 14px;
+      margin-bottom: 14px;
+      font-size: 13.5px;
+      line-height: 1.75;
+      color: var(--text);
+      min-height: 70px;
+    }
+    #t2-display-box .t2d-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 7px;
+    }
+    #t2-display-box .t2d-topic {
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+    #t2-display-box .t2d-instruction {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+    #t2-display-box .t2d-empty {
+      color: #aab0bb;
+      font-style: italic;
+      font-size: 13px;
+    }
 
-  .answer-area{padding:0 20px 20px;}
-  textarea.answer{
-    width:100%;
-    min-height:420px;
-    border:1px solid var(--paper-line);
-    border-radius:3px;
-    padding:16px 18px;
-    font-family:'Source Serif 4',serif;
-    font-size:15.5px;
-    line-height:1.75;
-    color:var(--ink);
-    resize:vertical;
-    background:
-      repeating-linear-gradient(
-        var(--panel),
-        var(--panel) 34px,
-        #eee9db 35px
-      );
-  }
-  textarea.answer:focus{outline:none; border-color:var(--brass);}
+    /* Paste / apply area — always open */
+    #t2-paste-area {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 14px;
+    }
+    #t2-paste-area-header {
+      background: #e8ebf0;
+      border-bottom: 1px solid var(--border);
+      padding: 6px 12px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    #t2-paste-textarea {
+      width: 100%;
+      min-height: 110px;
+      max-height: 220px;
+      resize: vertical;
+      font-size: 13px;
+      font-family: var(--font);
+      line-height: 1.65;
+      padding: 10px 13px;
+      border: none;
+      border-bottom: 1px solid var(--border);
+      outline: none;
+      background: var(--white);
+      color: var(--text);
+      display: block;
+    }
+    #t2-paste-textarea::placeholder { color: #aab0bb; font-style: italic; }
+    #t2-paste-textarea:focus { background: #fafbff; }
+    #t2-paste-footer {
+      padding: 7px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #f4f5f8;
+    }
+    #t2-apply-btn {
+      font-size: 12px;
+      padding: 5px 16px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      font-family: var(--font);
+      font-weight: 600;
+      transition: background .12s;
+    }
+    #t2-apply-btn:hover { background: var(--accent-lt); }
+    #t2-clear-btn2 {
+      font-size: 12px;
+      padding: 5px 12px;
+      background: transparent;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      cursor: pointer;
+      font-family: var(--font);
+    }
+    #t2-clear-btn2:hover { background: var(--border); color: var(--text); }
+    #t2-paste-hint {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-left: auto;
+    }
 
-  .wordbar{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:12px 20px 18px;
-    font-family:'IBM Plex Mono',monospace;
-    font-size:12px;
-    color:#8a8467;
-  }
-  .wordcount{font-weight:600;}
-  .wordcount.ok{color:var(--ok);}
-  .wordcount.low{color:var(--danger);}
+    /* Samples */
+    #t2-samples-section { margin-bottom: 2px; }
+    .use-custom-btn {
+      margin-top: 6px;
+      font-size: 12px;
+      padding: 4px 12px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      font-family: var(--font);
+    }
+    .use-custom-btn:hover { background: var(--accent-lt); }
 
-  .status-strip{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:6px;
-    padding:8px;
-    font-family:'IBM Plex Mono',monospace;
-    font-size:11px;
-    letter-spacing:.08em;
-    color:#6b7280;
-    background:#0e131b;
-    text-transform:uppercase;
-  }
-  .status-strip .dot{
-    width:7px; height:7px; border-radius:50%;
-    background:#4c5567;
-  }
-  .status-strip.running .dot{background:var(--ok); box-shadow:0 0 0 3px rgba(63,107,79,.25);}
-</style>
+    /* ── Right Panel ── */
+    #right-panel {
+      flex: 1;
+      background: #e8eaee;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    #right-panel-header {
+      background: #dde1e8;
+      border-bottom: 1px solid var(--border);
+      padding: 8px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    #right-panel-header .rph-right { display: flex; align-items: center; gap: 10px; }
+    #autosave-indicator {
+      font-size: 11px;
+      color: var(--text-muted);
+      opacity: 0;
+      transition: opacity .4s;
+    }
+    #autosave-indicator.show { opacity: 1; }
+
+    #writing-wrapper {
+      flex: 1;
+      padding: 14px 16px 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    #writing-area {
+      flex: 1;
+      width: 100%;
+      resize: none;
+      font-size: 14px;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      line-height: 1.75;
+      padding: 16px 18px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text);
+      box-shadow: inset 0 1px 3px rgba(0,0,0,.08);
+      outline: none;
+      /* Disable ALL browser text assistance */
+      spellcheck: false;
+      -webkit-spell-check: false;
+      -ms-spell-check: false;
+    }
+    #writing-area:focus { border-color: var(--accent-lt); box-shadow: inset 0 1px 3px rgba(0,0,0,.08), 0 0 0 2px rgba(26,58,107,.15); }
+
+    /* ── Stats Bar ── */
+    #stats-bar {
+      background: #dde1e8;
+      border-top: 1px solid var(--border);
+      padding: 7px 16px;
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      flex-shrink: 0;
+      flex-wrap: wrap;
+    }
+    .stat-item {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+    }
+    .stat-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .03em;
+    }
+    .stat-value {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+    }
+    .stat-value.good  { color: var(--green); }
+    .stat-value.warn  { color: var(--warn); }
+    .stat-value.muted { color: var(--text-muted); }
+
+    /* Word count progress */
+    #progress-section {
+      flex: 1;
+      min-width: 180px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    #progress-bar-track {
+      flex: 1;
+      height: 7px;
+      background: var(--bar-bg);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    #progress-bar-fill {
+      height: 100%;
+      background: var(--bar-fill);
+      border-radius: 4px;
+      transition: width .3s, background .3s;
+      max-width: 100%;
+    }
+    #progress-bar-fill.complete { background: var(--green); }
+    #progress-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    /* ── Modals & Toasts ── */
+    #toast {
+      position: fixed;
+      bottom: 20px; left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--accent);
+      color: #fff;
+      padding: 9px 20px;
+      border-radius: 4px;
+      font-size: 13px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s, transform .3s;
+      z-index: 1000;
+      box-shadow: 0 3px 10px rgba(0,0,0,.3);
+    }
+    #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 7px; height: 7px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #b0b5be; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #8a9099; }
+
+    /* ── Drag-over ── */
+    .drag-over { border-color: var(--accent) !important; background: #eef1f8 !important; }
+
+    /* ── Focus mode ── */
+    body.focus-mode #task-tabs { display: none; }
+    body.focus-mode #topbar .brand span { display: none; }
+
+    /* ── Responsive ── */
+    @media (max-width: 820px) {
+      #main { flex-direction: column; }
+      #left-panel { width: 100%; min-width: unset; border-right: none; border-bottom: 2px solid var(--border-dark); max-height: 45vh; }
+      #right-panel { min-height: 55vh; }
+    }
+
+    /* ── Print ── */
+    @media print {
+      #topbar, #task-tabs, #stats-bar, #left-panel { display: none !important; }
+      #right-panel { width: 100% !important; }
+      #writing-area { border: none !important; box-shadow: none !important; }
+    }
+
+    /* Custom question textarea (task 1) */
+    #t1-custom-section { margin-top: 14px; }
+    #t1-custom-section label { font-size: 12px; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 4px; }
+    #t1-custom-prompt { width: 100%; min-height: 60px; resize: vertical; font-size: 13px; font-family: var(--font); padding: 7px 10px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--white); color: var(--text); line-height: 1.5; }
+    #t1-custom-prompt:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+    /* Separator */
+    .sep { height: 1px; background: var(--border); margin: 12px 0; }
+
+    /* Sample questions quick-select */
+    .samples-label { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: .04em; margin-bottom: 6px; }
+    .sample-q {
+      font-size: 12px;
+      padding: 6px 10px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      cursor: pointer;
+      color: var(--text);
+      margin-bottom: 5px;
+      line-height: 1.45;
+      transition: border-color .15s, background .15s;
+    }
+    .sample-q:hover { border-color: var(--accent-lt); background: #f0f4fb; }
+    .sample-q.active-q { border-color: var(--accent); background: #eef2fb; font-weight: 600; }
+
+    /* Typing speed */
+    #typing-speed { white-space: nowrap; }
+  </style>
 </head>
 <body>
 
-  <div class="examhall">
-    <div class="brand">
-      <span class="mark">IELTS</span>
-      <h1>Academic Writing — Mock Test</h1>
-    </div>
-
-    <div class="timer-block">
-      <div>
-        <div class="clock-label">Total time</div>
-        <div class="clock" id="clockDisplay">60:00</div>
-      </div>
-      <div class="timer-controls">
-        <button class="btn primary" id="startBtn">Start</button>
-        <button class="btn" id="pauseBtn" disabled>Pause</button>
-        <button class="btn" id="resetBtn">Reset</button>
-      </div>
-    </div>
+<!-- Top Bar -->
+<div id="topbar">
+  <div class="brand">IELTS Writing Practice <span>Academic Module</span></div>
+  <div id="timer-block">
+    <div id="timer-display">20:00</div>
+    <button class="timer-btn" id="btn-start">▶ Start</button>
+    <button class="timer-btn" id="btn-pause" style="display:none">⏸ Pause</button>
+    <button class="timer-btn" id="btn-reset">↺ Reset</button>
   </div>
-
-  <div class="status-strip" id="statusStrip"><span class="dot"></span><span id="statusText">Not started — 60:00 minutes on the clock once you press Start</span></div>
-
-  <div class="tabbar">
-    <button class="tab active" id="tabBtn1" onclick="switchTask(1)">
-      Task 1
-      <span class="req">Report · 20 min · 150 words min</span>
-    </button>
-    <button class="tab" id="tabBtn2" onclick="switchTask(2)">
-      Task 2
-      <span class="req">Essay · 40 min · 250 words min</span>
-    </button>
+  <div id="topbar-right">
+    <button id="download-btn" title="Download essay">⬇ Save Essay</button>
+    <button id="fullscreen-btn" title="Toggle fullscreen">⛶ Fullscreen</button>
   </div>
+</div>
 
-  <!-- TASK 1 -->
-  <div class="stage" id="task1View">
-    <div class="panel">
-      <div class="panel-head">
-        <h2>Task 1 — Question</h2>
-        <span class="tag">Report writing</span>
+<!-- Task Tabs -->
+<div id="task-tabs">
+  <button class="task-tab active" data-task="1">Academic Task 1 <span class="badge">20 min · 150 words</span></button>
+  <button class="task-tab" data-task="2">Academic Task 2 <span class="badge">40 min · 250 words</span></button>
+</div>
+
+<!-- Main -->
+<div id="main">
+
+  <!-- Left Panel -->
+  <div id="left-panel">
+    <div id="left-panel-header">
+      <span id="lph-label">Question — Academic Task 1</span>
+      <div class="zoom-btns" id="zoom-btns" style="display:none">
+        <button class="zoom-btn" id="zoom-in"  title="Zoom in">+</button>
+        <button class="zoom-btn" id="zoom-out" title="Zoom out">−</button>
+        <button class="zoom-btn" id="zoom-reset" title="Reset zoom" style="width:auto;padding:0 6px;font-size:11px;">100%</button>
       </div>
-      <div class="question-area">
-        <textarea class="question-text" id="q1text">The chart below shows [describe the data — e.g. the percentage of households with internet access in three countries between 2005 and 2020]. Summarise the information by selecting and reporting the main features, and make comparisons where relevant.
+    </div>
+    <div id="left-scroll">
 
-Write at least 150 words.</textarea>
+      <!-- Task 1 Panel -->
+      <div id="t1-panel">
+        <div id="t1-instructions">
+          <strong>Academic Writing Task 1</strong>
+          <div class="task-meta">You should spend about 20 minutes on this task. Write at least <strong>150 words</strong>.</div>
+        </div>
 
-        <div class="img-zone" id="dropZone">
-          <input type="file" id="imgInput" accept="image/*">
-          <div id="imgPlaceholder">
-            <div style="font-size:26px;">📊</div>
-            <div class="hint"><b>Click to upload</b> or drag an image here<br>Paste your chart, graph, table, diagram or map</div>
+        <div id="t1-prompt">The chart below shows the number of trips made by children in one country in 1990 and 2010 to travel to and from school using different modes of transport.</div>
+        <div id="t1-sub-prompt">Summarise the information by selecting and reporting the main features, and make comparisons where relevant.</div>
+
+        <div id="image-container">
+          <div id="upload-overlay" id="upload-zone">
+            <div class="upload-icon">📊</div>
+            <p>Click to upload your chart, graph, map or diagram</p>
+            <p class="upload-hint">PNG · JPG · WEBP · or drag & drop</p>
           </div>
-          <button class="img-remove" id="imgRemoveBtn" style="display:none;">Remove</button>
+          <img id="uploaded-img" src="" alt="Task 1 Chart" style="display:none;" />
+        </div>
+        <div id="image-actions" style="display:none">
+          <button class="img-action-btn" id="replace-img-btn">↺ Replace</button>
+          <button class="img-action-btn" id="remove-img-btn">✕ Remove</button>
+        </div>
+        <input type="file" id="file-input" accept="image/png,image/jpeg,image/webp" />
+
+        <div class="sep"></div>
+        <div id="t1-custom-section">
+          <label for="t1-custom-prompt">Custom question prompt (optional)</label>
+          <textarea id="t1-custom-prompt" placeholder="Paste or type your own Task 1 question here…" spellcheck="false"></textarea>
+          <button class="use-custom-btn" id="use-t1-prompt">Apply Prompt</button>
         </div>
       </div>
-    </div>
 
-    <div class="panel">
-      <div class="panel-head">
-        <h2>Your Response</h2>
-        <span class="tag">Task 1</span>
+      <!-- Task 2 Panel -->
+      <div id="t2-panel">
+        <div id="t2-instructions">
+          <strong>Academic Writing Task 2</strong>
+          <div style="font-size:12px;color:var(--text-muted);margin-top:4px;">You should spend about 40 minutes on this task. Write at least <strong>250 words</strong>.</div>
+        </div>
+
+        <!-- Formatted question display — always visible -->
+        <div id="t2-display-box">
+          <div class="t2d-empty" id="t2-empty-msg">No question set yet — paste your question below and click Apply.</div>
+          <div id="t2-display-content" style="display:none">
+            <div class="t2d-label">Write about the following topic:</div>
+            <div class="t2d-topic" id="t2d-topic"></div>
+            <div class="t2d-instruction" id="t2d-instr"></div>
+          </div>
+        </div>
+
+        <!-- Always-visible paste & apply area -->
+        <div id="t2-paste-area">
+          <div id="t2-paste-area-header">Task 2 question prompt</div>
+          <label for="t2-paste-textarea" style="display:block;padding:10px 12px 4px;font-size:12px;font-weight:700;color:var(--text-muted);">Paste or type your Task 2 question below</label>
+          <textarea
+            id="t2-paste-textarea"
+            placeholder="Paste your Task 2 question here…&#10;&#10;Example:&#10;The average standard of people's health is likely to be lower in the future than it is now. To what extent do you agree or disagree?&#10;&#10;Give reasons for your answer and include any relevant examples from your own knowledge or experience."
+            spellcheck="false"
+            autocorrect="off"
+            autocomplete="off"
+          ></textarea>
+          <div id="t2-paste-footer">
+            <button id="t2-apply-btn">✔ Apply Prompt</button>
+            <button id="t2-clear-btn2">✕ Clear</button>
+            <span id="t2-paste-hint">Tip: paste the Task 2 question and then click Apply Prompt to set it.</span>
+          </div>
+        </div>
+
+        <!-- Sample questions -->
+        <div id="t2-samples-section">
+          <div class="samples-label">Sample Questions — click to load</div>
+          <div class="sample-q" data-qi="0">Some people believe that technology has made people less creative. Others disagree. Discuss both views and give your own opinion.</div>
+          <div class="sample-q" data-qi="1">In many countries, the gap between the rich and the poor is increasing. What are the causes of this problem, and what measures can be taken to reduce it?</div>
+          <div class="sample-q" data-qi="2">Some people think that it is more important to spend money on roads and motorways than on public transport. To what extent do you agree or disagree?</div>
+          <div class="sample-q" data-qi="3">The world is experiencing a dramatic increase in population. This is causing problems not only for poor, undeveloped countries but also for industrialised and developing nations. Discuss some possible solutions to this problem.</div>
+        </div>
       </div>
-      <div class="answer-area">
-        <textarea class="answer" id="answer1" placeholder="Begin your Task 1 response here..."></textarea>
+
+    </div>
+  </div>
+
+  <!-- Right Panel -->
+  <div id="right-panel">
+    <div id="right-panel-header">
+      <span>Answer Sheet</span>
+      <div class="rph-right">
+        <span id="autosave-indicator">✓ Saved</span>
+        <span id="typing-speed" style="font-size:11px;color:var(--text-muted);"></span>
       </div>
-      <div class="wordbar">
-        <span>Target: 150+ words</span>
-        <span class="wordcount low" id="wordcount1">0 words</span>
+    </div>
+    <div id="writing-wrapper">
+      <textarea
+        id="writing-area"
+        placeholder="Begin writing here…"
+        spellcheck="false"
+        autocorrect="off"
+        autocomplete="off"
+        autocapitalize="off"
+        data-gramm="false"
+        data-gramm_editor="false"
+        data-enable-grammarly="false"
+      ></textarea>
+    </div>
+    <div id="stats-bar">
+      <div class="stat-item">
+        <span class="stat-label">Words</span>
+        <span class="stat-value" id="word-count">0</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Chars</span>
+        <span class="stat-value muted" id="char-count">0</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Paragraphs</span>
+        <span class="stat-value muted" id="para-count">0</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Target</span>
+        <span class="stat-value" id="target-info">150 words</span>
+      </div>
+      <div id="progress-section">
+        <div id="progress-bar-track">
+          <div id="progress-bar-fill" style="width:0%"></div>
+        </div>
+        <span id="progress-label">0 / 150</span>
       </div>
     </div>
   </div>
 
-  <!-- TASK 2 -->
-  <div class="stage" id="task2View" style="display:none;">
-    <div class="panel">
-      <div class="panel-head">
-        <h2>Task 2 — Question</h2>
-        <span class="tag">Essay writing</span>
-      </div>
-      <div class="question-area">
-        <textarea class="question-text" id="q2text" style="min-height:180px;">Some people believe that unpaid community service should be a compulsory part of high school programmes. Others believe students should be free to choose how they spend their time outside school.
+</div>
 
-Discuss both these views and give your own opinion.
-
-Write at least 250 words.</textarea>
-      </div>
-    </div>
-
-    <div class="panel">
-      <div class="panel-head">
-        <h2>Your Response</h2>
-        <span class="tag">Task 2</span>
-      </div>
-      <div class="answer-area">
-        <textarea class="answer" id="answer2" placeholder="Begin your Task 2 response here..." style="min-height:520px;"></textarea>
-      </div>
-      <div class="wordbar">
-        <span>Target: 250+ words</span>
-        <span class="wordcount low" id="wordcount2">0 words</span>
-      </div>
-    </div>
-  </div>
+<!-- Toast -->
+<div id="toast"></div>
 
 <script>
-  // ---------- Timer ----------
-  const TOTAL_SECONDS = 60 * 60;
-  let secondsLeft = TOTAL_SECONDS;
-  let timerInterval = null;
-  let running = false;
+(function() {
+  'use strict';
 
-  const clockDisplay = document.getElementById('clockDisplay');
-  const startBtn = document.getElementById('startBtn');
-  const pauseBtn = document.getElementById('pauseBtn');
-  const resetBtn = document.getElementById('resetBtn');
-  const statusStrip = document.getElementById('statusStrip');
-  const statusText = document.getElementById('statusText');
+  // ── State ──────────────────────────────────────────────────────────
+  const STATE = {
+    currentTask: 1,
+    timer: { running: false, remaining: 20 * 60, interval: null },
+    tasks: {
+      1: { text: '', imageDataUrl: '', scrollTop: 0 },
+      2: { text: '', scrollTop: 0 }
+    },
+    typingSpeed: { chars: 0, start: null, interval: null },
+    zoomLevel: 1,
+    selectedQ2: 0
+  };
+  const TARGETS = { 1: 150, 2: 250 };
+  const DEFAULT_TIMES = { 1: 20 * 60, 2: 40 * 60 };
 
-  function formatTime(s){
-    const m = Math.floor(s/60).toString().padStart(2,'0');
-    const sec = (s%60).toString().padStart(2,'0');
-    return m + ':' + sec;
+  // ── DOM refs ──────────────────────────────────────────────────────
+  const $ = id => document.getElementById(id);
+  const writingArea    = $('writing-area');
+  const timerDisplay   = $('timer-display');
+  const wordCountEl    = $('word-count');
+  const charCountEl    = $('char-count');
+  const paraCountEl    = $('para-count');
+  const targetInfoEl   = $('target-info');
+  const progressFill   = $('progress-bar-fill');
+  const progressLabel  = $('progress-label');
+  const uploadedImg    = $('uploaded-img');
+  const uploadOverlay  = $('upload-overlay');
+  const imageActions   = $('image-actions');
+  const fileInput      = $('file-input');
+  const autosaveEl     = $('autosave-indicator');
+  const typingSpeedEl  = $('typing-speed');
+  const zoomBtns       = $('zoom-btns');
+  const t1Panel        = $('t1-panel');
+  const t2Panel        = $('t2-panel');
+  const lphLabel       = $('lph-label');
+
+  // ── Utilities ─────────────────────────────────────────────────────
+  function countWords(text) {
+    return text.trim() === '' ? 0 : text.trim().split(/\s+/).filter(w => w.length > 0).length;
+  }
+  function countParas(text) {
+    return text.trim() === '' ? 0 : text.trim().split(/\n+/).filter(p => p.trim().length > 0).length;
+  }
+  function formatTime(secs) {
+    const m = String(Math.floor(secs / 60)).padStart(2, '0');
+    const s = String(secs % 60).padStart(2, '0');
+    return `${m}:${s}`;
+  }
+  function showToast(msg, duration = 2200) {
+    const t = $('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), duration);
+  }
+  let autosaveTimer;
+  function triggerAutosave() {
+    clearTimeout(autosaveTimer);
+    autosaveTimer = setTimeout(() => {
+      saveToStorage();
+      autosaveEl.classList.add('show');
+      setTimeout(() => autosaveEl.classList.remove('show'), 1800);
+    }, 800);
   }
 
-  function renderClock(){
-    clockDisplay.textContent = formatTime(secondsLeft);
-    clockDisplay.classList.remove('warn','danger');
-    if(secondsLeft <= 300) clockDisplay.classList.add('danger');
-    else if(secondsLeft <= 600) clockDisplay.classList.add('warn');
+  // ── Storage ───────────────────────────────────────────────────────
+  function saveToStorage() {
+    try {
+      STATE.tasks[STATE.currentTask].text = writingArea.value;
+      localStorage.setItem('ielts_state', JSON.stringify({
+        currentTask: STATE.currentTask,
+        tasks: STATE.tasks,
+        timer: { remaining: STATE.timer.remaining },
+        selectedQ2: STATE.selectedQ2
+      }));
+    } catch(e) {}
+  }
+  function loadFromStorage() {
+    try {
+      const raw = localStorage.getItem('ielts_state');
+      if (!raw) return;
+      const data = JSON.parse(raw);
+      if (data.tasks) {
+        STATE.tasks[1] = Object.assign(STATE.tasks[1], data.tasks[1] || {});
+        STATE.tasks[2] = Object.assign(STATE.tasks[2], data.tasks[2] || {});
+      }
+      if (data.currentTask) STATE.currentTask = data.currentTask;
+      if (data.timer && data.timer.remaining != null) STATE.timer.remaining = data.timer.remaining;
+      if (data.selectedQ2 != null) STATE.selectedQ2 = data.selectedQ2;
+    } catch(e) {}
   }
 
-  function tick(){
-    if(secondsLeft <= 0){
-      clearInterval(timerInterval);
-      running = false;
-      statusText.textContent = "Time is up — put your pens down";
-      statusStrip.classList.remove('running');
-      startBtn.disabled = true;
-      pauseBtn.disabled = true;
-      return;
+  // ── Timer ─────────────────────────────────────────────────────────
+  function updateTimerDisplay() {
+    timerDisplay.textContent = formatTime(STATE.timer.remaining);
+    const total = DEFAULT_TIMES[STATE.currentTask];
+    const pct = STATE.timer.remaining / total;
+    timerDisplay.classList.remove('warn', 'danger');
+    if (pct <= 0.1)      timerDisplay.classList.add('danger');
+    else if (pct <= 0.25) timerDisplay.classList.add('warn');
+  }
+  function startTimer() {
+    if (STATE.timer.running) return;
+    STATE.timer.running = true;
+    $('btn-start').style.display = 'none';
+    $('btn-pause').style.display = '';
+    STATE.timer.interval = setInterval(() => {
+      if (STATE.timer.remaining <= 0) {
+        clearInterval(STATE.timer.interval);
+        STATE.timer.running = false;
+        $('btn-pause').style.display = 'none';
+        $('btn-start').style.display = '';
+        showToast('⏰ Time is up!', 4000);
+        return;
+      }
+      STATE.timer.remaining--;
+      updateTimerDisplay();
+      if (STATE.timer.remaining === 300) showToast('⚠ 5 minutes remaining', 3000);
+      if (STATE.timer.remaining === 60)  showToast('⚠ 1 minute remaining', 3000);
+    }, 1000);
+  }
+  function pauseTimer() {
+    clearInterval(STATE.timer.interval);
+    STATE.timer.running = false;
+    $('btn-pause').style.display = 'none';
+    $('btn-start').style.display = '';
+    $('btn-start').textContent = '▶ Resume';
+  }
+  function resetTimer() {
+    clearInterval(STATE.timer.interval);
+    STATE.timer.running = false;
+    STATE.timer.remaining = DEFAULT_TIMES[STATE.currentTask];
+    $('btn-pause').style.display = 'none';
+    $('btn-start').style.display = '';
+    $('btn-start').textContent = '▶ Start';
+    updateTimerDisplay();
+  }
+  $('btn-start').addEventListener('click', startTimer);
+  $('btn-pause').addEventListener('click', pauseTimer);
+  $('btn-reset').addEventListener('click', resetTimer);
+
+  // ── Word count & stats ────────────────────────────────────────────
+  function updateStats() {
+    const text  = writingArea.value;
+    const words = countWords(text);
+    const chars = text.length;
+    const paras = countParas(text);
+    const target = TARGETS[STATE.currentTask];
+
+    wordCountEl.textContent = words;
+    wordCountEl.className = 'stat-value' + (words >= target ? ' good' : words >= target * 0.8 ? ' warn' : '');
+    charCountEl.textContent = chars;
+    paraCountEl.textContent = paras;
+
+    const pct = Math.min(100, Math.round((words / target) * 100));
+    progressFill.style.width = pct + '%';
+    progressFill.classList.toggle('complete', words >= target);
+    progressLabel.textContent = `${words} / ${target}`;
+    targetInfoEl.textContent = target + ' words min';
+  }
+
+  writingArea.addEventListener('input', () => {
+    updateStats();
+    triggerAutosave();
+    trackTypingSpeed();
+  });
+
+  // ── Typing speed ──────────────────────────────────────────────────
+  let typingStarted = false, typingStartTime, charsAtStart = 0;
+  function trackTypingSpeed() {
+    if (!typingStarted) {
+      typingStarted = true;
+      typingStartTime = Date.now();
+      charsAtStart = writingArea.value.length;
+      if (STATE.typingSpeed.interval) clearInterval(STATE.typingSpeed.interval);
+      STATE.typingSpeed.interval = setInterval(updateTypingSpeed, 3000);
     }
-    secondsLeft--;
-    renderClock();
-    if(secondsLeft === 600) statusText.textContent = "10 minutes remaining";
-    if(secondsLeft === 300) statusText.textContent = "5 minutes remaining — start wrapping up";
+  }
+  function updateTypingSpeed() {
+    if (!typingStarted) return;
+    const elapsed = (Date.now() - typingStartTime) / 1000 / 60;
+    if (elapsed < 0.05) return;
+    const charsTyped = writingArea.value.length - charsAtStart;
+    const wpm = Math.round((charsTyped / 5) / elapsed);
+    if (wpm > 0 && wpm < 200) typingSpeedEl.textContent = wpm + ' wpm';
   }
 
-  startBtn.addEventListener('click', () => {
-    if(running) return;
-    running = true;
-    startBtn.disabled = true;
-    pauseBtn.disabled = false;
-    statusStrip.classList.add('running');
-    statusText.textContent = "Exam in progress";
-    timerInterval = setInterval(tick, 1000);
-  });
+  // ── Task switching ────────────────────────────────────────────────
+  function switchTask(taskNum) {
+    // Save current
+    STATE.tasks[STATE.currentTask].text = writingArea.value;
+    STATE.tasks[STATE.currentTask].scrollTop = writingArea.scrollTop;
 
-  pauseBtn.addEventListener('click', () => {
-    running = false;
-    clearInterval(timerInterval);
-    startBtn.disabled = false;
-    pauseBtn.disabled = true;
-    statusStrip.classList.remove('running');
-    statusText.textContent = "Paused — press Start to resume";
-  });
+    // Reset timer state for new task
+    clearInterval(STATE.timer.interval);
+    STATE.timer.running = false;
+    STATE.timer.remaining = DEFAULT_TIMES[taskNum];
+    $('btn-pause').style.display = 'none';
+    $('btn-start').style.display = '';
+    $('btn-start').textContent = '▶ Start';
 
-  resetBtn.addEventListener('click', () => {
-    running = false;
-    clearInterval(timerInterval);
-    secondsLeft = TOTAL_SECONDS;
-    renderClock();
-    startBtn.disabled = false;
-    pauseBtn.disabled = true;
-    statusStrip.classList.remove('running');
-    statusText.textContent = "Not started — 60:00 minutes on the clock once you press Start";
-  });
+    STATE.currentTask = taskNum;
 
-  renderClock();
+    // Restore text
+    writingArea.value = STATE.tasks[taskNum].text;
 
-  // ---------- Tabs ----------
-  function switchTask(n){
-    document.getElementById('task1View').style.display = n===1 ? 'grid' : 'none';
-    document.getElementById('task2View').style.display = n===2 ? 'grid' : 'none';
-    document.getElementById('tabBtn1').classList.toggle('active', n===1);
-    document.getElementById('tabBtn2').classList.toggle('active', n===2);
-  }
+    // Update panels
+    const isT1 = taskNum === 1;
+    t1Panel.style.display = isT1 ? 'block' : 'none';
+    t2Panel.style.display = isT1 ? 'none' : 'block';
+    lphLabel.textContent = isT1 ? 'Question — Academic Task 1' : 'Question — Academic Task 2';
+    zoomBtns.style.display = isT1 && uploadedImg.style.display !== 'none' ? '' : 'none';
 
-  // ---------- Word counters ----------
-  function countWords(str){
-    const trimmed = str.trim();
-    if(!trimmed) return 0;
-    return trimmed.split(/\s+/).length;
-  }
-
-  function bindCounter(textareaId, counterId, minWords){
-    const ta = document.getElementById(textareaId);
-    const counter = document.getElementById(counterId);
-    ta.addEventListener('input', () => {
-      const n = countWords(ta.value);
-      counter.textContent = n + ' words';
-      counter.classList.toggle('ok', n >= minWords);
-      counter.classList.toggle('low', n < minWords);
+    // Tab highlight
+    document.querySelectorAll('.task-tab').forEach(btn => {
+      btn.classList.toggle('active', parseInt(btn.dataset.task) === taskNum);
     });
-  }
-  bindCounter('answer1','wordcount1',150);
-  bindCounter('answer2','wordcount2',250);
 
-  // ---------- Task 1 image upload ----------
-  const dropZone = document.getElementById('dropZone');
-  const imgInput = document.getElementById('imgInput');
-  const imgPlaceholder = document.getElementById('imgPlaceholder');
-  const imgRemoveBtn = document.getElementById('imgRemoveBtn');
-  let previewImg = null;
+    updateTimerDisplay();
+    updateStats();
 
-  function showImage(dataUrl){
-    imgPlaceholder.style.display = 'none';
-    if(!previewImg){
-      previewImg = document.createElement('img');
-      dropZone.insertBefore(previewImg, imgRemoveBtn);
+    // Restore Q2 question display when switching to Task 2
+    if (!isT1) {
+      const saved = STATE.tasks[2] && STATE.tasks[2].questionRaw;
+      if (saved) {
+        t2PasteTextarea.value = saved;
+        applyT2Question(saved);
+      }
     }
-    previewImg.src = dataUrl;
-    imgRemoveBtn.style.display = 'block';
+
+    // Typing speed reset
+    typingStarted = false;
+    typingSpeedEl.textContent = '';
+
+    setTimeout(() => { writingArea.scrollTop = STATE.tasks[taskNum].scrollTop || 0; }, 0);
+    saveToStorage();
   }
 
-  function clearImage(){
-    if(previewImg){ previewImg.remove(); previewImg = null; }
-    imgPlaceholder.style.display = 'flex';
-    imgRemoveBtn.style.display = 'none';
-    imgInput.value = '';
+  document.querySelectorAll('.task-tab').forEach(btn => {
+    btn.addEventListener('click', () => switchTask(parseInt(btn.dataset.task)));
+  });
+
+  // ── Image upload ──────────────────────────────────────────────────
+  function setImage(dataUrl) {
+    uploadedImg.src = dataUrl;
+    uploadedImg.style.display = 'block';
+    uploadOverlay.style.display = 'none';
+    imageActions.style.display = 'flex';
+    zoomBtns.style.display = '';
+    STATE.tasks[1].imageDataUrl = dataUrl;
+    applyZoom();
+    saveToStorage();
+  }
+  function clearImage() {
+    uploadedImg.src = '';
+    uploadedImg.style.display = 'none';
+    uploadOverlay.style.display = 'flex';
+    imageActions.style.display = 'none';
+    zoomBtns.style.display = 'none';
+    STATE.tasks[1].imageDataUrl = '';
+    STATE.zoomLevel = 1;
+    saveToStorage();
   }
 
-  function handleFile(file){
-    if(!file || !file.type.startsWith('image/')) return;
+  uploadOverlay.addEventListener('click', () => fileInput.click());
+  $('replace-img-btn').addEventListener('click', () => fileInput.click());
+  $('remove-img-btn').addEventListener('click', clearImage);
+
+  fileInput.addEventListener('change', e => {
+    const file = e.target.files[0];
+    if (!file) return;
     const reader = new FileReader();
-    reader.onload = e => showImage(e.target.result);
+    reader.onload = ev => setImage(ev.target.result);
     reader.readAsDataURL(file);
+    e.target.value = '';
+  });
+
+  // Drag & drop
+  const imageContainer = document.getElementById('image-container');
+  imageContainer.addEventListener('dragover', e => { e.preventDefault(); imageContainer.classList.add('drag-over'); });
+  imageContainer.addEventListener('dragleave', ()=> imageContainer.classList.remove('drag-over'));
+  imageContainer.addEventListener('drop', e => {
+    e.preventDefault();
+    imageContainer.classList.remove('drag-over');
+    const file = e.dataTransfer.files[0];
+    if (!file || !file.type.startsWith('image/')) return;
+    const reader = new FileReader();
+    reader.onload = ev => setImage(ev.target.result);
+    reader.readAsDataURL(file);
+  });
+
+  // ── Zoom ──────────────────────────────────────────────────────────
+  function applyZoom() {
+    uploadedImg.style.transform = `scale(${STATE.zoomLevel})`;
+    uploadedImg.style.transformOrigin = 'top left';
+  }
+  $('zoom-in').addEventListener('click', () => {
+    STATE.zoomLevel = Math.min(3, parseFloat((STATE.zoomLevel + 0.2).toFixed(1)));
+    applyZoom();
+  });
+  $('zoom-out').addEventListener('click', () => {
+    STATE.zoomLevel = Math.max(0.4, parseFloat((STATE.zoomLevel - 0.2).toFixed(1)));
+    applyZoom();
+  });
+  $('zoom-reset').addEventListener('click', () => { STATE.zoomLevel = 1; applyZoom(); });
+
+  // ── Task 2 question selection ─────────────────────────────────────
+  // Task 2 question area
+  const t2PasteTextarea = $('t2-paste-textarea');
+  const t2DisplayContent = $('t2-display-content');
+  const t2EmptyMsg = $('t2-empty-msg');
+  const t2dTopic = $('t2d-topic');
+  const t2dInstr = $('t2d-instr');
+
+  const T2_SAMPLES = [
+    'Some people believe that technology has made people less creative. Others disagree. Discuss both views and give your own opinion.\n\nGive reasons for your answer and include any relevant examples from your own knowledge or experience.',
+    'In many countries, the gap between the rich and the poor is increasing. What are the causes of this problem, and what measures can be taken to reduce it?\n\nGive reasons for your answer and include any relevant examples from your own knowledge or experience.',
+    'Some people think that it is more important to spend money on roads and motorways than on public transport. To what extent do you agree or disagree?\n\nGive reasons for your answer and include any relevant examples from your own knowledge or experience.',
+    'The world is experiencing a dramatic increase in population. This is causing problems not only for poor, undeveloped countries but also for industrialised and developing nations. Discuss some possible solutions to this problem.\n\nGive reasons for your answer and include any relevant examples from your own knowledge or experience.'
+  ];
+
+  function applyT2Question(rawText) {
+    if (!rawText || !rawText.trim()) return;
+    const parts = rawText.trim().split(/\n\n+/);
+    const topic = parts[0].trim();
+    const instr = parts.slice(1).join('\n\n').trim() || 'Give reasons for your answer and include any relevant examples from your own knowledge or experience.';
+    t2dTopic.textContent = topic;
+    t2dInstr.textContent = instr;
+    t2EmptyMsg.style.display = 'none';
+    t2DisplayContent.style.display = 'block';
+    STATE.tasks[2].questionRaw = rawText;
+    saveToStorage();
   }
 
-  dropZone.addEventListener('click', (e) => {
-    if(e.target === imgRemoveBtn) return;
-    imgInput.click();
-  });
-  imgInput.addEventListener('change', e => handleFile(e.target.files[0]));
+  function clearT2Question() {
+    t2PasteTextarea.value = '';
+    t2DisplayContent.style.display = 'none';
+    t2EmptyMsg.style.display = 'block';
+    document.querySelectorAll('.sample-q').forEach(el => el.classList.remove('active-q'));
+    STATE.tasks[2].questionRaw = '';
+    saveToStorage();
+  }
 
-  ['dragenter','dragover'].forEach(evt => {
-    dropZone.addEventListener(evt, e => { e.preventDefault(); dropZone.classList.add('drag'); });
+  $('t2-apply-btn').addEventListener('click', () => {
+    const val = t2PasteTextarea.value.trim();
+    if (!val) { showToast('Please paste or type a question first'); return; }
+    applyT2Question(val);
+    showToast('Question applied');
   });
-  ['dragleave','drop'].forEach(evt => {
-    dropZone.addEventListener(evt, e => { e.preventDefault(); dropZone.classList.remove('drag'); });
+
+  $('t2-clear-btn2').addEventListener('click', clearT2Question);
+
+  document.querySelectorAll('.sample-q').forEach((el, i) => {
+    el.addEventListener('click', () => {
+      document.querySelectorAll('.sample-q').forEach(s => s.classList.remove('active-q'));
+      el.classList.add('active-q');
+      t2PasteTextarea.value = T2_SAMPLES[i];
+      applyT2Question(T2_SAMPLES[i]);
+      STATE.selectedQ2 = i;
+      showToast('Sample question loaded');
+    });
   });
-  dropZone.addEventListener('drop', e => {
-    handleFile(e.dataTransfer.files[0]);
+
+  // Task 1 custom prompt
+  $('use-t1-prompt').addEventListener('click', () => {
+    const val = $('t1-custom-prompt').value.trim();
+    if (!val) return;
+    $('t1-prompt').textContent = val;
+    $('t1-sub-prompt').textContent = 'Summarise the information by selecting and reporting the main features, and make comparisons where relevant.';
+    showToast('Task 1 prompt updated');
   });
-  imgRemoveBtn.addEventListener('click', e => { e.stopPropagation(); clearImage(); });
+
+  // ── Download essay ────────────────────────────────────────────────
+  $('download-btn').addEventListener('click', () => {
+    const text = writingArea.value;
+    if (!text.trim()) { showToast('Nothing to save yet'); return; }
+    const task  = STATE.currentTask === 1 ? 'Task1' : 'Task2';
+    const words = countWords(text);
+    const header = `IELTS Academic Writing ${task === 'Task1' ? 'Task 1' : 'Task 2'}\nDate: ${new Date().toLocaleDateString()}\nWord Count: ${words}\n${'─'.repeat(50)}\n\n`;
+    const blob = new Blob([header + text], { type: 'text/plain;charset=utf-8' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `IELTS_${task}_${new Date().toISOString().slice(0,10)}.txt`;
+    a.click();
+    showToast('Essay downloaded');
+  });
+
+  // ── Fullscreen ────────────────────────────────────────────────────
+  $('fullscreen-btn').addEventListener('click', () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().catch(() => {});
+      $('fullscreen-btn').textContent = '⛶ Exit';
+    } else {
+      document.exitFullscreen();
+      $('fullscreen-btn').textContent = '⛶ Fullscreen';
+    }
+  });
+
+  // ── Prevent autocorrect on writing area ──────────────────────────
+  writingArea.addEventListener('keydown', e => {
+    // Allow Tab to insert spaces
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      const start = writingArea.selectionStart;
+      const end   = writingArea.selectionEnd;
+      writingArea.value = writingArea.value.substring(0, start) + '    ' + writingArea.value.substring(end);
+      writingArea.selectionStart = writingArea.selectionEnd = start + 4;
+    }
+  });
+
+  // Keyboard shortcuts
+  document.addEventListener('keydown', e => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+      e.preventDefault();
+      saveToStorage();
+      autosaveEl.classList.add('show');
+      setTimeout(() => autosaveEl.classList.remove('show'), 1800);
+      showToast('Saved');
+    }
+    if ((e.ctrlKey || e.metaKey) && e.key === '1') { e.preventDefault(); switchTask(1); }
+    if ((e.ctrlKey || e.metaKey) && e.key === '2') { e.preventDefault(); switchTask(2); }
+  });
+
+  // ── Init ──────────────────────────────────────────────────────────
+  loadFromStorage();
+
+  // Restore UI from state
+  const ct = STATE.currentTask;
+  t1Panel.style.display = ct === 1 ? '' : 'none';
+  t2Panel.style.display = ct === 2 ? '' : 'none';
+  lphLabel.textContent  = ct === 1 ? 'Question — Academic Task 1' : 'Question — Academic Task 2';
+  document.querySelectorAll('.task-tab').forEach(btn => {
+    btn.classList.toggle('active', parseInt(btn.dataset.task) === ct);
+  });
+
+  writingArea.value = STATE.tasks[ct].text || '';
+  t1Panel.style.display = ct === 1 ? 'block' : 'none';
+  t2Panel.style.display = ct === 2 ? 'block' : 'none';
+
+  // Restore image
+  if (STATE.tasks[1].imageDataUrl) {
+    uploadedImg.src = STATE.tasks[1].imageDataUrl;
+    uploadedImg.style.display = 'block';
+    uploadOverlay.style.display = 'none';
+    imageActions.style.display = 'flex';
+    if (ct === 1) zoomBtns.style.display = '';
+  }
+
+  // Restore Q2 question from storage
+  if (STATE.tasks[2] && STATE.tasks[2].questionRaw) {
+    t2PasteTextarea.value = STATE.tasks[2].questionRaw;
+    applyT2Question(STATE.tasks[2].questionRaw);
+    if (STATE.selectedQ2 >= 0) {
+      document.querySelectorAll('.sample-q')[STATE.selectedQ2]?.classList.add('active-q');
+    }
+  }
+
+  updateTimerDisplay();
+  updateStats();
+
+  // Focus writing area on load
+  setTimeout(() => writingArea.focus(), 200);
+
+})();
 </script>
-
 </body>
 </html>
